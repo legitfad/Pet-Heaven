@@ -1,0 +1,10 @@
+# Dependencies (re-created by `npm install`)
+node_modules
+
+# Production build output (re-created by `npm run build`)
+dist
+
+# Misc
+.DS_Store
+*.local
+*.log
