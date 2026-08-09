@@ -1,10 +1,4 @@
-// ---------------------------------------------------------------------------
-// Notice — a reusable message banner.
-//
-// Used to confirm actions (e.g. "Your request has been prepared") or to show
-// information. `type` picks the colour: "success", "info", or "error".
-// role="status" politely announces the message to screen-reader users.
-// ---------------------------------------------------------------------------
+// reusable notice component for displaying messages to users
 export default function Notice({ type = "success", title, children, onClose }) {
   return (
     <div className={"notice notice-" + type} role="status">

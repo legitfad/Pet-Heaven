@@ -2,9 +2,7 @@ import { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useMember } from "../context/MemberContext.jsx";
 
-// ---------------------------------------------------------------------------
-// NavBar — the site navigation, shown on every page (through Layout).
-//
+
 // Key features:
 //   - <NavLink> automatically adds an "active" class to the link for the page
 //     you are currently on (so it can be highlighted).

@@ -1,10 +1,5 @@
 import { Link } from "react-router-dom";
-
-// ---------------------------------------------------------------------------
-// Footer — shown at the bottom of every page (through Layout).
-// Holds quick links, the society's visiting details, and contact info.
-// The year is generated so it never goes out of date.
-// ---------------------------------------------------------------------------
+// reusable footer component that is displayed on all pages
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -32,9 +27,9 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Visit us</h4>
           <p>
-            12 Sunshine Avenue
+            59 Sungei Tengah Road
             <br />
-            Singapore 123456
+            Singapore 699014
           </p>
           <p>Open daily · 10am – 6pm</p>
         </div>
@@ -52,8 +47,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p>
-          © {year} Pet Heaven. A student project created for ISIT207 — not a real
-          organisation.
+          © {year} Pet Heaven. All rights reserved.
         </p>
       </div>
     </footer>
