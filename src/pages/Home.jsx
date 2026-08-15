@@ -4,14 +4,6 @@ import PetGrid from "../components/PetGrid.jsx";
 import PetAvatar from "../components/PetAvatar.jsx";
 import { getFeaturedPets, PETS } from "../data/pets.js";
 
-// ---------------------------------------------------------------------------
-// Home — the landing page. It communicates who Pet Heaven is (purpose &
-// facilities), previews a few pets, explains how adoption works, and invites
-// visitors to adopt, rehome, or join. It reuses SectionHeading, Button, PetGrid
-// and PetAvatar rather than repeating markup.
-// ---------------------------------------------------------------------------
-
-// The small "purpose / facilities" cards. Kept as data so the JSX stays tidy.
 const FACILITIES = [
   {
     icon: "🏠",
@@ -35,7 +27,6 @@ const FACILITIES = [
   },
 ];
 
-// The four steps shown in the "How adoption works" section.
 const STEPS = [
   { n: 1, title: "Browse the pets", text: "Look through the cats and dogs currently in our care." },
   { n: 2, title: "Become a member", text: "Register a free membership so we can follow up with you." },
@@ -45,13 +36,10 @@ const STEPS = [
 
 export default function Home() {
   const featured = getFeaturedPets(3);
-
-  // Pick a couple of pets to decorate the hero.
   const heroPets = [PETS[0], PETS[4], PETS[2]];
 
   return (
     <>
-      {/* ---------------- HERO ---------------- */}
       <section className="hero">
         <div className="container hero-inner">
           <div className="hero-text">
@@ -70,7 +58,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Decorative cluster of pet avatars */}
           <div className="hero-art" aria-hidden="true">
             {heroPets.map((pet, i) => (
               <div key={pet.id} className={"hero-blob blob-" + i}>
@@ -86,7 +73,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- PURPOSE / FACILITIES ---------------- */}
       <section className="section">
         <div className="container">
           <SectionHeading
@@ -109,7 +95,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- FEATURED PETS ---------------- */}
       <section className="section section-tint">
         <div className="container">
           <div className="section-heading-row">
@@ -125,7 +110,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- HOW IT WORKS ---------------- */}
       <section className="section">
         <div className="container">
           <SectionHeading
@@ -147,7 +131,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- STATS BAND ---------------- */}
       <section className="stats-band">
         <div className="container stats-inner">
           <div className="stat">
@@ -169,7 +152,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- CALL TO ACTION ---------------- */}
       <section className="section">
         <div className="container cta-card">
           <div>

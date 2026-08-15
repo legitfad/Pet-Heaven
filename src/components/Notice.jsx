@@ -1,4 +1,3 @@
-// reusable notice component for displaying messages to users
 export default function Notice({ type = "success", title, children, onClose }) {
   return (
     <div className={"notice notice-" + type} role="status">

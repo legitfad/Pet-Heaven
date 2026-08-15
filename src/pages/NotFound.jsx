@@ -1,9 +1,5 @@
 import Button from "../components/Button.jsx";
 
-// ---------------------------------------------------------------------------
-// NotFound — shown for any URL that does not match a real page (the "*" route
-// in App.jsx). It keeps visitors from hitting a dead end.
-// ---------------------------------------------------------------------------
 export default function NotFound() {
   return (
     <div className="container section narrow center-block">

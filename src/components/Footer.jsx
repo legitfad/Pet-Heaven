@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-// reusable footer component that is displayed on all pages
+
 export default function Footer() {
   const year = new Date().getFullYear();
 

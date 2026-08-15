@@ -6,12 +6,6 @@ import Notice from "../components/Notice.jsx";
 import { required, isEmail, minLength } from "../utils/validators.js";
 import { sendMailto, ADMIN_EMAIL } from "../utils/mailto.js";
 
-// ---------------------------------------------------------------------------
-// Contact — a general enquiry form plus a short FAQ. The FAQ uses the browser's
-// native <details>/<summary> elements, which give an accessible expand/collapse
-// accordion with no extra JavaScript.
-// ---------------------------------------------------------------------------
-
 const FAQ = [
   {
     q: "How much does it cost to adopt?",
@@ -85,7 +79,6 @@ export default function Contact() {
       />
 
       <div className="contact-layout">
-        {/* Contact form */}
         <div>
           {submitted ? (
             <Notice type="success" title="Thanks for reaching out!">
@@ -139,7 +132,6 @@ export default function Contact() {
           )}
         </div>
 
-        {/* FAQ + contact details */}
         <aside className="contact-aside">
           <div className="info-card">
             <h3>Visit or call</h3>

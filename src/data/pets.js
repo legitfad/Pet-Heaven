@@ -1,34 +1,3 @@
-// ---------------------------------------------------------------------------
-// pets.js — the "database" of pets available for adoption.
-//
-// For this assignment we keep the data in a plain JavaScript array instead of a
-// real backend database (that part is optional / extra credit in the brief).
-// Every pet is a simple object. The pages import this array and render it with
-// React components, so adding a new pet is as easy as adding a new object here.
-//
-// Each pet has:
-//   id          - short unique text used in the page URL  (/adopt/mochi)
-//   name        - the pet's name
-//   species     - "cat" or "dog"  (used by the filter and the PetAvatar drawing)
-//   breed       - breed / type
-//   age         - text like "2 years"
-//   gender      - "Female" or "Male"
-//   size        - "Small" | "Medium" | "Large"
-//   color       - fur colour (hex) used to draw the cartoon avatar
-//   bg          - card background colour (hex) so each pet looks distinct
-//   traits      - a few short personality words (shown as little tags)
-//   vaccinated  - true / false
-//   desexed     - true / false (neutered / spayed)
-//   goodWith    - short text, e.g. "Kids & other cats"
-//   description - a longer friendly write-up for the details page
-//   status      - "Available" (could later be "Adopted")
-//   photo       - OPTIONAL real photo URL. Leave "" and the app will fetch a
-//                 photo from a free API (and fall back to the drawn avatar).
-//                 Set this to force a specific picture.
-//   dogBreed    - (dogs only) the Dog CEO API breed path used to fetch a
-//                 matching photo, e.g. "retriever/golden". Cats use The Cat API.
-// ---------------------------------------------------------------------------
-
 export const PETS = [
   {
     id: "mochi",
@@ -188,14 +157,10 @@ export const PETS = [
   },
 ];
 
-// --- Small helper functions (used by several pages) -----------------------
-
-// Find one pet by its id. Returns undefined if not found.
 export function getPet(id) {
   return PETS.find((pet) => pet.id === id);
 }
 
-// Get the first few pets to show as "featured" on the home page.
 export function getFeaturedPets(count = 3) {
   return PETS.slice(0, count);
 }

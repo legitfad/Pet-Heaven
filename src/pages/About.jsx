@@ -1,11 +1,6 @@
 import SectionHeading from "../components/SectionHeading.jsx";
 import Button from "../components/Button.jsx";
 
-// ---------------------------------------------------------------------------
-// About — communicates Pet Heaven's purpose, story, facilities and values.
-// This is mostly static content, arranged with the reusable SectionHeading.
-// ---------------------------------------------------------------------------
-
 const VALUES = [
   {
     icon: "🐾",

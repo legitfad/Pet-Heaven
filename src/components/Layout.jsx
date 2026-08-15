@@ -3,11 +3,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "./NavBar.jsx";
 import Footer from "./Footer.jsx";
 
-//Standard layout for all pages
-//  NavBar  (top, same on every page)
-//  <Outlet /> React Router draws the current page here
-//  Footer  (bottom, same on every page)
-
 export default function Layout() {
   const { pathname } = useLocation();
 
@@ -17,7 +12,6 @@ export default function Layout() {
 
   return (
     <div className="app-shell">
-      {/* Accessibility: lets keyboard users jump straight to the content */}
       <a href="#main" className="skip-link">
         Skip to content
       </a>

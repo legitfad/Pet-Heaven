@@ -1,13 +1,3 @@
-// ---------------------------------------------------------------------------
-// SearchFilterBar — reusable controls for the Adopt page: a search box plus
-// "All / Cats / Dogs" filter chips, and a live count of matching pets.
-//
-// This is a "controlled" component — the Adopt page owns the search text and
-// the chosen filter, and passes them in. When the visitor types or clicks a
-// chip, we call back up (onSearchChange / onFilterChange) so the page can
-// update its state and re-filter the list. This keeps the component reusable
-// and free of its own hidden state.
-// ---------------------------------------------------------------------------
 export default function SearchFilterBar({
   search,
   onSearchChange,

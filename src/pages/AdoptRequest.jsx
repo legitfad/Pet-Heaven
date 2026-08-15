@@ -9,24 +9,11 @@ import Notice from "../components/Notice.jsx";
 import { required, isEmail, isPhone } from "../utils/validators.js";
 import { sendMailto, ADMIN_EMAIL } from "../utils/mailto.js";
 
-// ---------------------------------------------------------------------------
-// AdoptRequest — the online form for a member to adopt a SPECIFIC pet.
-//
-// Two "gates" protect this page:
-//   1. If the pet id in the URL is unknown, we show a not-found message.
-//   2. If nobody is logged in, we ask the visitor to register or log in first
-//      (the brief says adoption is for members).
-//
-// On a valid submit we build a mailto: link so the request is "mailed to the
-// administrator", then show a success message.
-// ---------------------------------------------------------------------------
 export default function AdoptRequest() {
   const { id } = useParams();
   const pet = getPet(id);
   const { currentMember } = useMember();
 
-  // Pre-fill the name/email from the logged-in member (fixed with || "" so the
-  // fields are always controlled, even before the member check below).
   const [values, setValues] = useState({
     name: currentMember ? currentMember.name : "",
     email: currentMember ? currentMember.email : "",
@@ -41,7 +28,6 @@ export default function AdoptRequest() {
   const [agreeError, setAgreeError] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  // --- Gate 1: unknown pet ---
   if (!pet) {
     return (
       <div className="container section narrow">
@@ -52,7 +38,6 @@ export default function AdoptRequest() {
     );
   }
 
-  // --- Gate 2: must be signed in ---
   if (!currentMember) {
     return (
       <div className="container section narrow">
@@ -84,7 +69,6 @@ export default function AdoptRequest() {
     setValues((prev) => ({ ...prev, [name]: value }));
   }
 
-  // Build an object of { fieldName: errorMessage } for any invalid fields.
   function validate() {
     const e = {};
     e.name = required(values.name);
@@ -94,7 +78,6 @@ export default function AdoptRequest() {
     e.housing = required(values.housing);
     e.hasPets = required(values.hasPets);
     e.reason = required(values.reason);
-    // Drop the keys that came back empty (empty = valid).
     Object.keys(e).forEach((k) => !e[k] && delete e[k]);
     return e;
   }
@@ -108,7 +91,6 @@ export default function AdoptRequest() {
     setErrors(foundErrors);
     setAgreeError(agreeMsg);
 
-    // If anything is invalid, focus the first bad field and stop.
     if (Object.keys(foundErrors).length > 0) {
       const first = Object.keys(foundErrors)[0];
       const el = document.getElementById("field-" + first);
@@ -117,7 +99,6 @@ export default function AdoptRequest() {
     }
     if (agreeMsg) return;
 
-    // All good — mail the request to the administrator.
     sendMailto(`Adoption request for ${pet.name}`, {
       Pet: `${pet.name} (${pet.breed}, ${pet.age})`,
       "Applicant name": values.name,
@@ -132,7 +113,6 @@ export default function AdoptRequest() {
     setSubmitted(true);
   }
 
-  // --- Success screen ---
   if (submitted) {
     return (
       <div className="container section narrow">
@@ -152,7 +132,6 @@ export default function AdoptRequest() {
     );
   }
 
-  // --- The form ---
   return (
     <div className="container section narrow">
       <p className="breadcrumb">

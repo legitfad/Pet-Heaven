@@ -12,11 +12,6 @@ import {
   mustMatch,
 } from "../utils/validators.js";
 
-// ---------------------------------------------------------------------------
-// Register — lets a visitor create a free membership and become a supporter.
-// The new member is saved (via the member context + localStorage) and signed in
-// automatically. Registration is required before requesting an adoption.
-// ---------------------------------------------------------------------------
 export default function Register() {
   const { register } = useMember();
 
@@ -68,7 +63,6 @@ export default function Register() {
     }
     if (agreeMsg) return;
 
-    // Try to create the account. The context rejects duplicate emails.
     const result = register({
       name: values.name,
       email: values.email,

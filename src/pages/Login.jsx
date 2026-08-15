@@ -7,20 +7,14 @@ import Button from "../components/Button.jsx";
 import Notice from "../components/Notice.jsx";
 import { required, isEmail } from "../utils/validators.js";
 
-// ---------------------------------------------------------------------------
-// Login — signs an existing member in. On success we send them to the home page.
-// If someone is already signed in, we show a friendly "you're signed in" panel
-// instead of the form.
-// ---------------------------------------------------------------------------
 export default function Login() {
   const { login, currentMember, logout } = useMember();
   const navigate = useNavigate();
 
   const [values, setValues] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
-  const [formError, setFormError] = useState(""); // "wrong email/password" message
+  const [formError, setFormError] = useState("");
 
-  // If already logged in, don't show the form.
   if (currentMember) {
     return (
       <div className="container section narrow">
@@ -79,7 +73,7 @@ export default function Login() {
       setFormError(result.error);
       return;
     }
-    navigate("/"); // signed in — go home
+    navigate("/");
   }
 
   return (

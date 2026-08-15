@@ -2,17 +2,8 @@ import { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useMember } from "../context/MemberContext.jsx";
 
-
-// Key features:
-//   - <NavLink> automatically adds an "active" class to the link for the page
-//     you are currently on (so it can be highlighted).
-//   - On narrow screens the links collapse behind a hamburger button that this
-//     component opens/closes with a piece of state (`open`).
-//   - It reads the member context to show either "Log in / Join us" or a
-//     greeting + "Log out", depending on whether someone is signed in.
-// ---------------------------------------------------------------------------
 export default function NavBar() {
-  const [open, setOpen] = useState(false); // is the mobile menu open?
+  const [open, setOpen] = useState(false);
   const { currentMember, logout } = useMember();
   const navigate = useNavigate();
 
@@ -21,16 +12,14 @@ export default function NavBar() {
   function handleLogout() {
     logout();
     closeMenu();
-    navigate("/"); // go home after signing out
+    navigate("/");
   }
 
-  // Gives the active page's link an extra "active" class for highlighting.
   const linkClass = ({ isActive }) => "nav-link" + (isActive ? " active" : "");
 
   return (
     <header className="site-header">
       <div className="nav-inner">
-        {/* Brand / logo (a little paw + the name), links back to Home */}
         <Link to="/" className="brand" onClick={closeMenu}>
           <svg className="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
             <g fill="currentColor">
@@ -46,7 +35,6 @@ export default function NavBar() {
           </span>
         </Link>
 
-        {/* Hamburger button (only visible on small screens via CSS) */}
         <button
           className="nav-toggle"
           aria-expanded={open}
@@ -57,7 +45,6 @@ export default function NavBar() {
           <span className="bars" aria-hidden="true"></span>
         </button>
 
-        {/* The links. "show" class slides them open on mobile. */}
         <nav id="primary-nav" className={"nav-links" + (open ? " show" : "")}>
           <NavLink to="/" end className={linkClass} onClick={closeMenu}>
             Home

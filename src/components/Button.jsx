@@ -1,10 +1,4 @@
 import { Link } from "react-router-dom";
-//reusable button component that can be used for links or form submissions
-
-//if pass 'to', it becomes a router <Link>
-//if pass 'href', it becomes an anchor <a> (for external links)
-//otherwise it becomes a real <button> (for form submits etc.)
-// variant picks the colour style: "primary", "secondary" or "ghost".
 
 export default function Button({
   variant = "primary",

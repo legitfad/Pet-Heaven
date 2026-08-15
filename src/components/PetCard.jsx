@@ -1,17 +1,6 @@
 import { Link } from "react-router-dom";
 import PetImage from "./PetImage.jsx";
 
-// ---------------------------------------------------------------------------
-// PetCard — a reusable card that previews ONE pet.
-//
-// The SAME component is used in two places:
-//   - the Home page "featured pets" strip, and
-//   - the Adopt page grid of all pets.
-// This is exactly what component-based design is about: build once, reuse many.
-//
-// If the pet has a real `photo`, it shows that; otherwise it draws the cartoon
-// PetAvatar. The whole picture links to that pet's details page.
-// ---------------------------------------------------------------------------
 export default function PetCard({ pet }) {
   return (
     <article className="pet-card">

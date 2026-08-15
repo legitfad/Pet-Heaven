@@ -6,14 +6,6 @@ import Notice from "../components/Notice.jsx";
 import { required, isEmail, isPhone } from "../utils/validators.js";
 import { sendMailto, ADMIN_EMAIL } from "../utils/mailto.js";
 
-// ---------------------------------------------------------------------------
-// Release — the online form for a pet owner who can no longer keep their pet
-// and wants Pet Heaven to help rehome it. Open to everyone (no login needed).
-// On a valid submit the details are mailed to the administrator.
-//
-// It uses the SAME building blocks as the adoption form (FormField, validators,
-// mailto) — a good example of reusing components across different forms.
-// ---------------------------------------------------------------------------
 export default function Release() {
   const [values, setValues] = useState({
     ownerName: "",

@@ -1,98 +1,86 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-// ---------------------------------------------------------------------------
-// usePetPhoto — a reusable custom hook that finds a real photo for a pet using
-// free, no-key animal APIs, and remembers it so the pet keeps the SAME photo
-// on every visit.
-//
-//   Dogs -> Dog CEO API      (https://dog.ceo)      photo matched to the breed
-//   Cats -> The Cat API      (https://thecatapi.com) a random cat photo
-//
-// How it decides what to show:
-//   1. If the pet has a `photo` set in the data, always use that.
-//   2. Else, if we fetched one before, reuse the cached URL (from localStorage).
-//   3. Else, fetch a new one from the correct API and cache it.
-//
-// If the network is down or the fetch fails, `url` stays empty and the
-// component (PetImage) simply draws the offline avatar instead.
-// ---------------------------------------------------------------------------
+const CACHE_KEY = "petHeavenPhoto:";
 
-const CACHE_PREFIX = "petHavenPhoto:";
-
-// Read a previously-saved photo URL for this pet (if any).
-function readCache(id) {
-  try {
-    return window.localStorage.getItem(CACHE_PREFIX + id) || "";
-  } catch {
-    return "";
-  }
+function getSavedPhoto(id) {
+  return localStorage.getItem(CACHE_KEY + id) || "";
 }
 
-// Save a photo URL so the pet keeps the same picture next time.
-function writeCache(id, url) {
-  try {
-    window.localStorage.setItem(CACHE_PREFIX + id, url);
-  } catch {
-    // Ignore storage errors (e.g. private browsing).
-  }
+function savePhoto(id, url) {
+  localStorage.setItem(CACHE_KEY + id, url);
 }
 
-export function usePetPhoto(pet) {
-  // Work out the best photo we already know about, before any fetching.
-  const known = pet.photo || readCache(pet.id) || "";
-  const [url, setUrl] = useState(known);
-  const [loading, setLoading] = useState(!known);
+export function clearSavedPhoto(id) {
+  localStorage.removeItem(CACHE_KEY + id);
+}
+
+async function fetchDogPhoto(pet) {
+  const endpoint = pet.dogBreed
+    ? `https://dog.ceo/api/breed/${pet.dogBreed}/images/random`
+    : "https://dog.ceo/api/breeds/image/random";
+  const response = await fetch(endpoint);
+  const data = await response.json();
+  return data.message;
+}
+
+async function fetchCatPhoto() {
+  const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=1");
+  const data = await response.json();
+  return data[0]?.url || "";
+}
+
+function getBackupPhoto(pet) {
+  if (pet.species === "cat") {
+    return `https://cataas.com/cat?width=600&height=400&pet=${pet.id}`;
+  }
+
+  return "";
+}
+
+async function fetchPhoto(pet, useBackup) {
+  if (useBackup) {
+    return getBackupPhoto(pet);
+  }
+
+  if (pet.species === "dog") {
+    return fetchDogPhoto(pet);
+  }
+
+  return fetchCatPhoto();
+}
+
+export function usePetPhoto(pet, retry) {
+  const [photoUrl, setPhotoUrl] = useState(pet.photo || getSavedPhoto(pet.id));
 
   useEffect(() => {
-    // Re-check when we switch to a different pet.
-    const cached = pet.photo || readCache(pet.id) || "";
-    if (cached) {
-      setUrl(cached);
-      setLoading(false);
+    let cancelled = false;
+    const savedPhoto = retry ? "" : pet.photo || getSavedPhoto(pet.id);
+
+    if (savedPhoto) {
+      setPhotoUrl(savedPhoto);
       return;
     }
 
-    // Nothing cached — fetch a fresh photo from the right API.
-    setUrl("");
-    setLoading(true);
-    let cancelled = false;
+    setPhotoUrl("");
 
-    async function fetchPhoto() {
-      try {
-        // Pick the right API and URL for this pet.
-        let endpoint;
-        if (pet.species === "dog") {
-          endpoint = pet.dogBreed
-            ? `https://dog.ceo/api/breed/${pet.dogBreed}/images/random`
-            : "https://dog.ceo/api/breeds/image/random"; // any dog
-        } else {
-          endpoint = "https://api.thecatapi.com/v1/images/search"; // any cat
+    fetchPhoto(pet, retry > 0)
+      .then((url) => {
+        if (!cancelled && url) {
+          savePhoto(pet.id, url);
+          setPhotoUrl(url);
         }
-
-        const res = await fetch(endpoint);
-        const data = await res.json();
-
-        // The two APIs return the URL in different shapes.
-        const found = pet.species === "dog" ? data.message : data[0] && data[0].url;
-
-        if (!cancelled && found) {
-          setUrl(found);
-          writeCache(pet.id, found);
+      })
+      .catch(() => {
+        const backup = getBackupPhoto(pet);
+        if (!cancelled && backup) {
+          setPhotoUrl(backup);
         }
-      } catch {
-        // Leave url empty -> the avatar fallback will be shown.
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    }
+      });
 
-    fetchPhoto();
     return () => {
       cancelled = true;
     };
-    // We only need to re-run when the pet changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pet.id]);
+  }, [pet, retry]);
 
-  return { url, loading };
+  return photoUrl;
 }

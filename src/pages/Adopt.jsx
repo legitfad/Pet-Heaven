@@ -1,32 +1,22 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import SectionHeading from "../components/SectionHeading.jsx";
 import SearchFilterBar from "../components/SearchFilterBar.jsx";
 import PetGrid from "../components/PetGrid.jsx";
 import { PETS } from "../data/pets.js";
 
-// ---------------------------------------------------------------------------
-// Adopt — lists every pet available for adoption, with a search box and a
-// Cats/Dogs filter (an "extra friendly feature for browsing and searching").
-//
-// This page OWNS the search text and the chosen filter in state. Whenever
-// either changes we recalculate the visible list with useMemo (which only
-// re-runs the filtering when the inputs actually change).
-// ---------------------------------------------------------------------------
 export default function Adopt() {
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("all"); // "all" | "cat" | "dog"
+  const [filter, setFilter] = useState("all");
 
-  const visiblePets = useMemo(() => {
-    const term = search.trim().toLowerCase();
-    return PETS.filter((pet) => {
-      const matchesType = filter === "all" || pet.species === filter;
-      const matchesSearch =
-        term === "" ||
-        pet.name.toLowerCase().includes(term) ||
-        pet.breed.toLowerCase().includes(term);
-      return matchesType && matchesSearch;
-    });
-  }, [search, filter]);
+  const term = search.trim().toLowerCase();
+  const visiblePets = PETS.filter((pet) => {
+    const matchesType = filter === "all" || pet.species === filter;
+    const matchesSearch =
+      pet.name.toLowerCase().includes(term) ||
+      pet.breed.toLowerCase().includes(term);
+
+    return matchesType && matchesSearch;
+  });
 
   return (
     <div className="container section">

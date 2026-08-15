@@ -3,16 +3,10 @@ import { getPet } from "../data/pets.js";
 import PetImage from "../components/PetImage.jsx";
 import Button from "../components/Button.jsx";
 
-// ---------------------------------------------------------------------------
-// PetDetails — shows one pet in full. The pet's id comes from the URL
-// (/adopt/mochi) via useParams(). From here the visitor can start an adoption
-// request for this specific pet.
-// ---------------------------------------------------------------------------
 export default function PetDetails() {
   const { id } = useParams();
   const pet = getPet(id);
 
-  // If the id in the URL does not match any pet, show a gentle message.
   if (!pet) {
     return (
       <div className="container section narrow">

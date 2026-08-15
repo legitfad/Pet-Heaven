@@ -1,24 +1,3 @@
-// ---------------------------------------------------------------------------
-// FormField — the most reused component in the app.
-//
-// ONE component draws a labelled form control plus its inline error message,
-// and it can be an <input>, a <select>, or a <textarea> depending on `type`.
-// Every form (Register, Login, Release, Adopt request, Contact) is built from
-// these, so all fields look and behave the same.
-//
-// It is a "controlled" field: the parent form holds the value in state and
-// passes `value` + `onChange` in, and passes an `error` message when the field
-// fails validation.
-//
-// Props:
-//   label, name        the visible label and the field's name
-//   type               "text" | "email" | "tel" | "password" | "select" | "textarea"
-//   value, onChange    controlled value + change handler (from the parent)
-//   error              validation message to show (or "" for none)
-//   required           shows a red * and sets the required attribute
-//   options            array of strings, only for type="select"
-//   placeholder, rows, autoComplete   passed to the control where relevant
-// ---------------------------------------------------------------------------
 export default function FormField({
   label,
   name,
@@ -35,7 +14,6 @@ export default function FormField({
   const id = "field-" + name;
   const errorId = id + "-error";
 
-  // Props shared by every kind of control.
   const shared = {
     id,
     name,
