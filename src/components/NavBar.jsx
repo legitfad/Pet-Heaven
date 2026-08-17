@@ -21,7 +21,7 @@ export default function NavBar() {
     <header className="site-header">
       <div className="nav-inner">
         <Link to="/" className="brand" onClick={closeMenu}>
-          <svg className="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <svg className="brand-mark" viewBox="0 0 64 64">
             <g fill="currentColor">
               <ellipse cx="22" cy="24" rx="6" ry="8" />
               <ellipse cx="42" cy="24" rx="6" ry="8" />
@@ -36,16 +36,14 @@ export default function NavBar() {
         </Link>
 
         <button
-          className="nav-toggle"
-          aria-expanded={open}
-          aria-controls="primary-nav"
+          className={"nav-toggle" + (open ? " open" : "")}
           onClick={() => setOpen(!open)}
         >
-          <span className="sr-only">Toggle menu</span>
-          <span className="bars" aria-hidden="true"></span>
+          <span>Menu</span>
+          <span className="bars"></span>
         </button>
 
-        <nav id="primary-nav" className={"nav-links" + (open ? " show" : "")}>
+        <nav className={"nav-links" + (open ? " show" : "")}>
           <NavLink to="/" end className={linkClass} onClick={closeMenu}>
             Home
           </NavLink>

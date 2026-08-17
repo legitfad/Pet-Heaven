@@ -56,7 +56,7 @@ export default function About() {
           />
           <div className="feature-grid">
             <article className="feature-card">
-              <div className="feature-icon" aria-hidden="true">🏠</div>
+              <div className="feature-icon">🏠</div>
               <h3>Shelter &amp; daily care</h3>
               <p>
                 Clean, comfortable spaces with food, bedding and enrichment, so
@@ -64,7 +64,7 @@ export default function About() {
               </p>
             </article>
             <article className="feature-card">
-              <div className="feature-icon" aria-hidden="true">🩺</div>
+              <div className="feature-icon">🩺</div>
               <h3>Veterinary care</h3>
               <p>
                 Health checks, vaccinations and desexing through our partner
@@ -72,7 +72,7 @@ export default function About() {
               </p>
             </article>
             <article className="feature-card">
-              <div className="feature-icon" aria-hidden="true">🤝</div>
+              <div className="feature-icon">🤝</div>
               <h3>Rehoming service</h3>
               <p>
                 A careful adoption process — including interviews — that puts the
@@ -89,7 +89,7 @@ export default function About() {
           <div className="feature-grid three">
             {VALUES.map((v) => (
               <article className="feature-card" key={v.title}>
-                <div className="feature-icon" aria-hidden="true">
+                <div className="feature-icon">
                   {v.icon}
                 </div>
                 <h3>{v.title}</h3>

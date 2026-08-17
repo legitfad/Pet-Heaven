@@ -55,9 +55,6 @@ export default function Contact() {
     const foundErrors = validate();
     setErrors(foundErrors);
     if (Object.keys(foundErrors).length > 0) {
-      const first = Object.keys(foundErrors)[0];
-      const el = document.getElementById("field-" + first);
-      if (el) el.focus();
       return;
     }
     sendMailto("Website enquiry: " + values.subject, {

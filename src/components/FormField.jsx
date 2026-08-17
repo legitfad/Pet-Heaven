@@ -11,23 +11,18 @@ export default function FormField({
   rows = 4,
   autoComplete,
 }) {
-  const id = "field-" + name;
-  const errorId = id + "-error";
-
-  const shared = {
-    id,
-    name,
-    value,
-    onChange,
-    "aria-invalid": error ? "true" : undefined,
-    "aria-describedby": error ? errorId : undefined,
-    className: "control" + (error ? " control-error" : ""),
-  };
+  const className = "control" + (error ? " control-error" : "");
 
   let control;
   if (type === "select") {
     control = (
-      <select {...shared} required={required}>
+      <select
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={className}
+        required={required}
+      >
         <option value="">Please choose…</option>
         {options.map((opt) => (
           <option key={opt} value={opt}>
@@ -38,13 +33,24 @@ export default function FormField({
     );
   } else if (type === "textarea") {
     control = (
-      <textarea {...shared} rows={rows} placeholder={placeholder} required={required} />
+      <textarea
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={className}
+        rows={rows}
+        placeholder={placeholder}
+        required={required}
+      />
     );
   } else {
     control = (
       <input
-        {...shared}
+        name={name}
         type={type}
+        value={value}
+        onChange={onChange}
+        className={className}
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
@@ -54,21 +60,12 @@ export default function FormField({
 
   return (
     <div className="form-field">
-      <label htmlFor={id}>
+      <label>
         {label}
-        {required && (
-          <span className="req" aria-hidden="true">
-            {" "}
-            *
-          </span>
-        )}
+        {required && <span className="req"> *</span>}
       </label>
       {control}
-      {error && (
-        <p className="field-error" id={errorId}>
-          {error}
-        </p>
-      )}
+      {error && <p className="field-error">{error}</p>}
     </div>
   );
 }

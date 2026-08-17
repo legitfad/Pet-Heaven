@@ -3,7 +3,7 @@ import Button from "../components/Button.jsx";
 export default function NotFound() {
   return (
     <div className="container section narrow center-block">
-      <p className="big-emoji" aria-hidden="true">
+      <p className="big-emoji">
         🐾
       </p>
       <h1>Page not found</h1>

@@ -92,9 +92,6 @@ export default function AdoptRequest() {
     setAgreeError(agreeMsg);
 
     if (Object.keys(foundErrors).length > 0) {
-      const first = Object.keys(foundErrors)[0];
-      const el = document.getElementById("field-" + first);
-      if (el) el.focus();
       return;
     }
     if (agreeMsg) return;

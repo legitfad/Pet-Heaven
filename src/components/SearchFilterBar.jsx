@@ -14,11 +14,8 @@ export default function SearchFilterBar({
   return (
     <div className="search-filter">
       <div className="search-box">
-        <label htmlFor="petSearch" className="sr-only">
-          Search pets by name or breed
-        </label>
+        <label>Search pets</label>
         <input
-          id="petSearch"
           type="search"
           className="control"
           placeholder="Search by name or breed…"
@@ -27,13 +24,12 @@ export default function SearchFilterBar({
         />
       </div>
 
-      <div className="filter-chips" role="group" aria-label="Filter pets by type">
+      <div className="filter-chips">
         {chips.map((chip) => (
           <button
             key={chip.key}
             type="button"
             className={"chip" + (filter === chip.key ? " chip-active" : "")}
-            aria-pressed={filter === chip.key}
             onClick={() => onFilterChange(chip.key)}
           >
             {chip.label}

@@ -58,7 +58,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-art" aria-hidden="true">
+          <div className="hero-art">
             {heroPets.map((pet, i) => (
               <div key={pet.id} className={"hero-blob blob-" + i}>
                 <PetAvatar
@@ -84,7 +84,7 @@ export default function Home() {
           <div className="feature-grid">
             {FACILITIES.map((f) => (
               <article className="feature-card" key={f.title}>
-                <div className="feature-icon" aria-hidden="true">
+                <div className="feature-icon">
                   {f.icon}
                 </div>
                 <h3>{f.title}</h3>
@@ -120,7 +120,7 @@ export default function Home() {
           <ol className="steps">
             {STEPS.map((s) => (
               <li className="step" key={s.n}>
-                <span className="step-num" aria-hidden="true">
+                <span className="step-num">
                   {s.n}
                 </span>
                 <h3>{s.title}</h3>

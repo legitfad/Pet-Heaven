@@ -4,11 +4,7 @@ import PetImage from "./PetImage.jsx";
 export default function PetCard({ pet }) {
   return (
     <article className="pet-card">
-      <Link
-        to={`/adopt/${pet.id}`}
-        className="pet-card-media"
-        aria-label={`View details for ${pet.name}`}
-      >
+      <Link to={`/adopt/${pet.id}`} className="pet-card-media">
         <PetImage pet={pet} />
         <span className={"pet-badge " + pet.species}>
           {pet.species === "cat" ? "Cat" : "Dog"}

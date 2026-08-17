@@ -56,9 +56,6 @@ export default function Register() {
     setAgreeError(agreeMsg);
 
     if (Object.keys(foundErrors).length > 0) {
-      const first = Object.keys(foundErrors)[0];
-      const el = document.getElementById("field-" + first);
-      if (el) el.focus();
       return;
     }
     if (agreeMsg) return;
@@ -73,8 +70,6 @@ export default function Register() {
 
     if (!result.ok) {
       setErrors({ email: result.error });
-      const el = document.getElementById("field-email");
-      if (el) el.focus();
       return;
     }
     setSubmitted(true);

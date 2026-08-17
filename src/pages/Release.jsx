@@ -49,9 +49,6 @@ export default function Release() {
     setAgreeError(agreeMsg);
 
     if (Object.keys(foundErrors).length > 0) {
-      const first = Object.keys(foundErrors)[0];
-      const el = document.getElementById("field-" + first);
-      if (el) el.focus();
       return;
     }
     if (agreeMsg) return;
@@ -172,7 +169,7 @@ export default function Release() {
           type="textarea"
           value={values.health}
           onChange={handleChange}
-          placeholder="Is your pet vaccinated / desexed? Is it good with children or other animals?"
+          placeholder="Is your pet vaccinated / spayed? Is it good with children or other animals?"
         />
 
         <div className="form-field checkbox-field">
