@@ -5,6 +5,7 @@ import Button from "../components/Button.jsx";
 import Notice from "../components/Notice.jsx";
 import { required, isEmail, isPhone } from "../utils/validators.js";
 import { sendMailto, ADMIN_EMAIL } from "../utils/mailto.js";
+import { addRequest } from "../utils/requestStore.js";
 
 export default function Release() {
   const [values, setValues] = useState({
@@ -29,13 +30,16 @@ export default function Release() {
 
   function validate() {
     const e = {};
-    e.ownerName = required(values.ownerName);
-    e.email = required(values.email) || isEmail(values.email);
-    e.phone = required(values.phone) || isPhone(values.phone);
-    e.petType = required(values.petType);
-    e.petName = required(values.petName);
-    e.reason = required(values.reason);
-    Object.keys(e).forEach((k) => !e[k] && delete e[k]);
+
+    if (required(values.ownerName)) e.ownerName = required(values.ownerName);
+    if (required(values.email)) e.email = required(values.email);
+    else if (isEmail(values.email)) e.email = isEmail(values.email);
+    if (required(values.phone)) e.phone = required(values.phone);
+    else if (isPhone(values.phone)) e.phone = isPhone(values.phone);
+    if (required(values.petType)) e.petType = required(values.petType);
+    if (required(values.petName)) e.petName = required(values.petName);
+    if (required(values.reason)) e.reason = required(values.reason);
+
     return e;
   }
 
@@ -52,6 +56,16 @@ export default function Release() {
       return;
     }
     if (agreeMsg) return;
+
+    addRequest({
+      type: "Release",
+      petName: values.petName,
+      petType: values.petType,
+      applicantName: values.ownerName,
+      email: values.email,
+      phone: values.phone,
+      notes: values.reason,
+    });
 
     sendMailto("Pet release request", {
       "Owner name": values.ownerName,

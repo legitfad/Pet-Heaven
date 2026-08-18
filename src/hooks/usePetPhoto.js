@@ -31,7 +31,7 @@ async function fetchCatPhoto() {
 
 function getBackupPhoto(pet) {
   if (pet.species === "cat") {
-    return `https://cataas.com/cat?width=600&height=400&pet=${pet.id}`;
+    return "https://cataas.com/cat?width=600&height=400&pet=" + pet.id;
   }
 
   return "";
@@ -63,19 +63,24 @@ export function usePetPhoto(pet, retry) {
 
     setPhotoUrl("");
 
-    fetchPhoto(pet, retry > 0)
-      .then((url) => {
+    async function loadPhoto() {
+      try {
+        const url = await fetchPhoto(pet, retry > 0);
+
         if (!cancelled && url) {
           savePhoto(pet.id, url);
           setPhotoUrl(url);
         }
-      })
-      .catch(() => {
+      } catch {
         const backup = getBackupPhoto(pet);
+
         if (!cancelled && backup) {
           setPhotoUrl(backup);
         }
-      });
+      }
+    }
+
+    loadPhoto();
 
     return () => {
       cancelled = true;

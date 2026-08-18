@@ -7,28 +7,37 @@ export default function Button({
   href,
   children,
   className = "",
-  ...rest
+  type = "button",
+  onClick,
 }) {
-  const classes = ["btn", `btn-${variant}`, size ? `btn-${size}` : "", className]
-    .filter(Boolean)
-    .join(" ");
+  let classes = "btn btn-" + variant;
+
+  if (size) {
+    classes += " btn-" + size;
+  }
+
+  if (className) {
+    classes += " " + className;
+  }
 
   if (to) {
     return (
-      <Link to={to} className={classes} {...rest}>
+      <Link to={to} className={classes} onClick={onClick}>
         {children}
       </Link>
     );
   }
+
   if (href) {
     return (
-      <a href={href} className={classes} {...rest}>
+      <a href={href} className={classes} onClick={onClick}>
         {children}
       </a>
     );
   }
+
   return (
-    <button className={classes} {...rest}>
+    <button className={classes} type={type} onClick={onClick}>
       {children}
     </button>
   );

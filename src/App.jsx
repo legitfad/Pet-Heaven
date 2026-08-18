@@ -9,6 +9,7 @@ import AdoptRequest from "./pages/AdoptRequest.jsx";
 import Release from "./pages/Release.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
+import Employee from "./pages/Employee.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="release" element={<Release />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
+        <Route path="employee" element={<Employee />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />

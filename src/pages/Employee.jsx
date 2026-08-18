@@ -1,0 +1,142 @@
+import { Link } from "react-router-dom";
+import { useMember } from "../context/MemberContext.jsx";
+import { useLocalStorage } from "../hooks/useLocalStorage.js";
+import SectionHeading from "../components/SectionHeading.jsx";
+import Button from "../components/Button.jsx";
+import Notice from "../components/Notice.jsx";
+
+export default function Employee() {
+  const { currentMember } = useMember();
+  const [requests, setRequests] = useLocalStorage("petHeavenRequests", []);
+
+  if (!currentMember || currentMember.role !== "employee") {
+    return (
+      <div className="container section narrow">
+        <SectionHeading
+          as="h1"
+          eyebrow="Employee only"
+          title="Please log in as an employee"
+          subtitle="This page is only for Pet Heaven staff."
+        />
+        <Button to="/login">Go to login</Button>
+      </div>
+    );
+  }
+
+  function updateStatus(id, status) {
+    const updated = [];
+
+    for (let i = 0; i < requests.length; i++) {
+      const request = requests[i];
+
+      if (request.id === id) {
+        updated.push({
+          id: request.id,
+          type: request.type,
+          petName: request.petName,
+          petType: request.petType,
+          applicantName: request.applicantName,
+          email: request.email,
+          phone: request.phone,
+          notes: request.notes,
+          date: request.date,
+          status: status,
+        });
+      } else {
+        updated.push(request);
+      }
+    }
+
+    setRequests(updated);
+  }
+
+  function deleteRequest(id) {
+    const updated = [];
+
+    for (let i = 0; i < requests.length; i++) {
+      if (requests[i].id !== id) {
+        updated.push(requests[i]);
+      }
+    }
+
+    setRequests(updated);
+  }
+
+  return (
+    <div className="container section">
+      <SectionHeading
+        as="h1"
+        eyebrow="Employee"
+        title="Pet request management"
+        subtitle="View and update adoption or release requests submitted through the website."
+      />
+
+      {requests.length === 0 ? (
+        <Notice type="info" title="No requests yet">
+          New adoption and release requests will appear here after users submit
+          the forms.
+        </Notice>
+      ) : (
+        <div className="request-list">
+          {requests.map((request) => (
+            <div className="request-card" key={request.id}>
+              <div>
+                <p className="request-type">{request.type}</p>
+                <h3>{request.petName}</h3>
+                <p className="pet-meta">
+                  {request.petType} request sent on {request.date}
+                </p>
+              </div>
+
+              <div className="request-details">
+                <p>
+                  <strong>Name:</strong> {request.applicantName}
+                </p>
+                <p>
+                  <strong>Email:</strong> {request.email}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {request.phone}
+                </p>
+                <p>
+                  <strong>Notes:</strong> {request.notes}
+                </p>
+              </div>
+
+              <div className="request-actions">
+                <label>
+                  Status
+                  <select
+                    className="control"
+                    value={request.status}
+                    onChange={(e) => updateStatus(request.id, e.target.value)}
+                  >
+                    <option>New</option>
+                    <option>Contacted</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+                  </select>
+                </label>
+                <button
+                  className="btn btn-secondary btn-sm"
+                  onClick={() => deleteRequest(request.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <p className="form-alt employee-note">
+        Employee login example: <strong>staff@petheaven.org.sg</strong>. This is
+        a simple demo login for the assignment, not real website security.
+      </p>
+
+      <p>
+        <Link to="/adopt">Back to pet list</Link>
+      </p>
+    </div>
+  );
+}

@@ -35,14 +35,18 @@ export default function Register() {
 
   function validate() {
     const e = {};
-    e.name = required(values.name);
-    e.email = required(values.email) || isEmail(values.email);
-    e.interest = required(values.interest);
-    e.password = required(values.password) || minLength(values.password, 6);
-    e.confirm =
-      required(values.confirm) ||
-      mustMatch(values.confirm, values.password, "Passwords");
-    Object.keys(e).forEach((k) => !e[k] && delete e[k]);
+
+    if (required(values.name)) e.name = required(values.name);
+    if (required(values.email)) e.email = required(values.email);
+    else if (isEmail(values.email)) e.email = isEmail(values.email);
+    if (required(values.interest)) e.interest = required(values.interest);
+    if (required(values.password)) e.password = required(values.password);
+    else if (minLength(values.password, 6)) e.password = minLength(values.password, 6);
+    if (required(values.confirm)) e.confirm = required(values.confirm);
+    else if (mustMatch(values.confirm, values.password, "Passwords")) {
+      e.confirm = mustMatch(values.confirm, values.password, "Passwords");
+    }
+
     return e;
   }
 

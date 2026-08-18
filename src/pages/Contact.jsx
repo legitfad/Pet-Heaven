@@ -42,11 +42,14 @@ export default function Contact() {
 
   function validate() {
     const e = {};
-    e.name = required(values.name);
-    e.email = required(values.email) || isEmail(values.email);
-    e.subject = required(values.subject);
-    e.message = required(values.message) || minLength(values.message, 10);
-    Object.keys(e).forEach((k) => !e[k] && delete e[k]);
+
+    if (required(values.name)) e.name = required(values.name);
+    if (required(values.email)) e.email = required(values.email);
+    else if (isEmail(values.email)) e.email = isEmail(values.email);
+    if (required(values.subject)) e.subject = required(values.subject);
+    if (required(values.message)) e.message = required(values.message);
+    else if (minLength(values.message, 10)) e.message = minLength(values.message, 10);
+
     return e;
   }
 

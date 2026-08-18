@@ -24,11 +24,16 @@ export default function Login() {
           title={`You are signed in, ${currentMember.name.split(" ")[0]}`}
         />
         <Notice type="info" title="You're all set">
-          You can browse pets and request an adoption. Want to switch accounts?
-          Log out below.
+          {currentMember.role === "employee"
+            ? "You can manage pet requests from the employee page."
+            : "You can browse pets and request an adoption."}
         </Notice>
         <div className="btn-row">
-          <Button to="/adopt">Browse pets</Button>
+          {currentMember.role === "employee" ? (
+            <Button to="/employee">Employee page</Button>
+          ) : (
+            <Button to="/adopt">Browse pets</Button>
+          )}
           <Button
             variant="secondary"
             onClick={() => {
@@ -51,9 +56,11 @@ export default function Login() {
 
   function validate() {
     const e = {};
-    e.email = required(values.email) || isEmail(values.email);
-    e.password = required(values.password);
-    Object.keys(e).forEach((k) => !e[k] && delete e[k]);
+
+    if (required(values.email)) e.email = required(values.email);
+    else if (isEmail(values.email)) e.email = isEmail(values.email);
+    if (required(values.password)) e.password = required(values.password);
+
     return e;
   }
 
@@ -70,6 +77,12 @@ export default function Login() {
       setFormError(result.error);
       return;
     }
+
+    if (result.member.role === "employee") {
+      navigate("/employee");
+      return;
+    }
+
     navigate("/");
   }
 

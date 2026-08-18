@@ -7,7 +7,11 @@ import FormField from "../components/FormField.jsx";
 import Button from "../components/Button.jsx";
 import Notice from "../components/Notice.jsx";
 import { required, isEmail, isPhone } from "../utils/validators.js";
-import { sendMailto, ADMIN_EMAIL } from "../utils/mailto.js";
+import { addRequest } from "../utils/requestStore.js";
+import {
+  EMPLOYEE_EMAIL,
+  sendEmployeeNotification,
+} from "../utils/emailNotification.js";
 
 export default function AdoptRequest() {
   const { id } = useParams();
@@ -27,6 +31,7 @@ export default function AdoptRequest() {
   const [agree, setAgree] = useState(false);
   const [agreeError, setAgreeError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   if (!pet) {
     return (
@@ -71,18 +76,21 @@ export default function AdoptRequest() {
 
   function validate() {
     const e = {};
-    e.name = required(values.name);
-    e.email = required(values.email) || isEmail(values.email);
-    e.phone = required(values.phone) || isPhone(values.phone);
-    e.address = required(values.address);
-    e.housing = required(values.housing);
-    e.hasPets = required(values.hasPets);
-    e.reason = required(values.reason);
-    Object.keys(e).forEach((k) => !e[k] && delete e[k]);
+
+    if (required(values.name)) e.name = required(values.name);
+    if (required(values.email)) e.email = required(values.email);
+    else if (isEmail(values.email)) e.email = isEmail(values.email);
+    if (required(values.phone)) e.phone = required(values.phone);
+    else if (isPhone(values.phone)) e.phone = isPhone(values.phone);
+    if (required(values.address)) e.address = required(values.address);
+    if (required(values.housing)) e.housing = required(values.housing);
+    if (required(values.hasPets)) e.hasPets = required(values.hasPets);
+    if (required(values.reason)) e.reason = required(values.reason);
+
     return e;
   }
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault();
     const foundErrors = validate();
     const agreeMsg = agree
@@ -96,28 +104,31 @@ export default function AdoptRequest() {
     }
     if (agreeMsg) return;
 
-    sendMailto(`Adoption request for ${pet.name}`, {
-      Pet: `${pet.name} (${pet.breed}, ${pet.age})`,
-      "Applicant name": values.name,
-      Email: values.email,
-      Phone: values.phone,
-      Address: values.address,
-      "Home type": values.housing,
-      "Other pets at home": values.hasPets,
-      "Why they want to adopt": values.reason,
-      "Member account": currentMember.email,
-    });
+    const request = {
+      type: "Adoption",
+      petName: pet.name,
+      petType: pet.species,
+      applicantName: values.name,
+      email: values.email,
+      phone: values.phone,
+      notes: values.reason,
+    };
+
+    addRequest(request);
+
+    const sent = await sendEmployeeNotification(request);
+    setEmailSent(sent);
     setSubmitted(true);
   }
 
   if (submitted) {
     return (
       <div className="container section narrow">
-        <Notice type="success" title="Your adoption request is ready to send!">
-          Your email app should have opened with the request pre-filled — just
-          press <strong>Send</strong> to deliver it to our team. If it did not
-          open, please email us at <a href={`mailto:${ADMIN_EMAIL}`}>{ADMIN_EMAIL}</a>.
-          We will review your request and contact you to arrange a meet-up.
+        <Notice type="success" title="Your adoption request has been submitted">
+          Your request was saved for the employee team to review.
+          {emailSent
+            ? ` An email notification was sent to ${EMPLOYEE_EMAIL}.`
+            : ` Email notification is not set up yet, but employees can still see the request after logging in.`}
         </Notice>
         <div className="btn-row">
           <Button to="/adopt">Browse more pets</Button>

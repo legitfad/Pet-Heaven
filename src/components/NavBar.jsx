@@ -59,6 +59,11 @@ export default function NavBar() {
           <NavLink to="/contact" className={linkClass} onClick={closeMenu}>
             Contact
           </NavLink>
+          {currentMember && currentMember.role === "employee" && (
+            <NavLink to="/employee" className={linkClass} onClick={closeMenu}>
+              Employee
+            </NavLink>
+          )}
 
           {currentMember ? (
             <span className="nav-account">

@@ -158,7 +158,13 @@ export const PETS = [
 ];
 
 export function getPet(id) {
-  return PETS.find((pet) => pet.id === id);
+  for (let i = 0; i < PETS.length; i++) {
+    if (PETS[i].id === id) {
+      return PETS[i];
+    }
+  }
+
+  return null;
 }
 
 export function getFeaturedPets(count = 3) {
