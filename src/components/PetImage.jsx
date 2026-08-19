@@ -34,7 +34,6 @@ export default function PetImage({ pet }) {
   return (
     <PetAvatar
       species={pet.species}
-      color={pet.color}
       bg={pet.bg}
       name={pet.name}
     />

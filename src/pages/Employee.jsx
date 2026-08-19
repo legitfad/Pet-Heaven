@@ -10,6 +10,7 @@ export default function Employee() {
   const [requests, setRequests] = useLocalStorage("petHeavenRequests", []);
   const adoptionRequests = [];
   const releaseRequests = [];
+  const contactRequests = [];
 
   for (let i = 0; i < requests.length; i++) {
     if (requests[i].type === "Adoption") {
@@ -18,6 +19,10 @@ export default function Employee() {
 
     if (requests[i].type === "Release") {
       releaseRequests.push(requests[i]);
+    }
+
+    if (requests[i].type === "Contact") {
+      contactRequests.push(requests[i]);
     }
   }
 
@@ -155,6 +160,7 @@ export default function Employee() {
         <>
           {showRequests("Adoption requests", adoptionRequests)}
           {showRequests("Release a pet requests", releaseRequests)}
+          {showRequests("Contact messages", contactRequests)}
         </>
       )}
 

@@ -1,6 +1,6 @@
 const REQUEST_KEY = "petHeavenRequests";
 
-export function getRequests() {
+function getRequests() {
   try {
     const saved = localStorage.getItem(REQUEST_KEY);
     return saved ? JSON.parse(saved) : [];
@@ -9,7 +9,7 @@ export function getRequests() {
   }
 }
 
-export function saveRequests(requests) {
+function saveRequests(requests) {
   localStorage.setItem(REQUEST_KEY, JSON.stringify(requests));
 }
 

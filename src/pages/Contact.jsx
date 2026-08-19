@@ -4,7 +4,8 @@ import FormField from "../components/FormField.jsx";
 import Button from "../components/Button.jsx";
 import Notice from "../components/Notice.jsx";
 import { required, isEmail, minLength } from "../utils/validators.js";
-import { sendMailto, ADMIN_EMAIL } from "../utils/mailto.js";
+import { addRequest } from "../utils/requestStore.js";
+import { sendEmployeeNotification } from "../utils/emailNotification.js";
 
 const FAQ = [
   {
@@ -34,6 +35,7 @@ export default function Contact() {
   });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [emailMessage, setEmailMessage] = useState("");
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -53,19 +55,28 @@ export default function Contact() {
     return e;
   }
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault();
     const foundErrors = validate();
     setErrors(foundErrors);
     if (Object.keys(foundErrors).length > 0) {
       return;
     }
-    sendMailto("Website enquiry: " + values.subject, {
-      Name: values.name,
-      Email: values.email,
-      Subject: values.subject,
-      Message: values.message,
-    });
+
+    const request = {
+      type: "Contact",
+      petName: values.subject,
+      petType: "General enquiry",
+      applicantName: values.name,
+      email: values.email,
+      phone: "Not given",
+      notes: values.message,
+    };
+
+    addRequest(request);
+
+    const emailResult = await sendEmployeeNotification(request);
+    setEmailMessage(emailResult.message);
     setSubmitted(true);
   }
 
@@ -82,9 +93,8 @@ export default function Contact() {
         <div>
           {submitted ? (
             <Notice type="success" title="Thanks for reaching out!">
-              Your email app should have opened with your message ready to send.
-              If it did not, email us directly at{" "}
-              <a href={`mailto:${ADMIN_EMAIL}`}>{ADMIN_EMAIL}</a>.
+              Your message was saved for the employee team to review.{" "}
+              {emailMessage || "Employees can see it after logging in."}
             </Notice>
           ) : (
             <form className="form-card" onSubmit={handleSubmit} noValidate>
@@ -141,7 +151,7 @@ export default function Contact() {
               Open daily · 10am – 6pm
             </p>
             <p>
-              {ADMIN_EMAIL}
+              disposablefad@gmail.com
               <br />
               +65 6123 4567
             </p>

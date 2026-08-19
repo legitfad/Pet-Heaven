@@ -63,7 +63,6 @@ export default function Home() {
               <div key={pet.id} className={"hero-blob blob-" + i}>
                 <PetAvatar
                   species={pet.species}
-                  color={pet.color}
                   bg={pet.bg}
                   name={pet.name}
                 />

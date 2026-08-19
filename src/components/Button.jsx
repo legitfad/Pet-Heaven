@@ -4,7 +4,6 @@ export default function Button({
   variant = "primary",
   size = "",
   to,
-  href,
   children,
   className = "",
   type = "button",
@@ -25,14 +24,6 @@ export default function Button({
       <Link to={to} className={classes} onClick={onClick}>
         {children}
       </Link>
-    );
-  }
-
-  if (href) {
-    return (
-      <a href={href} className={classes} onClick={onClick}>
-        {children}
-      </a>
     );
   }
 
