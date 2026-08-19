@@ -16,6 +16,11 @@ export const PETS = [
     description:
       "Mochi is a soft, cream-coloured sweetheart who loves nothing more than a warm lap and a slow afternoon. She was surrendered when her family moved overseas. She is litter-trained, gentle with children, and greets everyone with a happy chirp.",
     status: "Available",
+    story: [
+      "Mochi arrived at Pet Heaven after her family moved overseas.",
+      "She settled in quickly and enjoys quiet afternoons with the volunteers.",
+      "Mochi is now ready for a calm home with lots of gentle company.",
+    ],
     photo: "",
   },
   {
@@ -35,6 +40,11 @@ export const PETS = [
     description:
       "Simba is a bold, friendly tabby with endless curiosity. He will follow you from room to room and 'help' with everything you do. He loves feather toys and sunny windowsills, and would suit an active household that enjoys an outgoing cat.",
     status: "Available",
+    story: [
+      "Simba came to us as a confident and curious cat.",
+      "He passed his health check and quickly became a shelter favourite.",
+      "Simba is waiting for a family who enjoys a playful companion.",
+    ],
     photo: "",
   },
   {
@@ -54,6 +64,11 @@ export const PETS = [
     description:
       "Luna is a delicate grey beauty who is a little shy at first but blossoms into the most affectionate companion once she trusts you. She would do best in a calm, quiet home where she can settle in at her own pace.",
     status: "Available",
+    story: [
+      "Luna arrived feeling shy and unsure of new people.",
+      "With patience, she started accepting treats and gentle pats.",
+      "Luna is looking for a peaceful home where she can feel safe.",
+    ],
     photo: "",
   },
   {
@@ -73,6 +88,11 @@ export const PETS = [
     description:
       "Dressed in his smart black-and-white tuxedo, Oreo is a relaxed gentleman who enjoys a good nap and a scratch behind the ears. He is independent during the day and cuddly at night — the perfect companion for a working adopter.",
     status: "Available",
+    story: [
+      "Oreo came into the shelter calm, polite and observant.",
+      "He enjoys his daily routine and likes watching everyone from his cosy bed.",
+      "Oreo is ready for an adopter who likes a relaxed pet.",
+    ],
     photo: "",
   },
   {
@@ -93,6 +113,11 @@ export const PETS = [
     description:
       "Buddy is a big, golden bundle of joy who loves people, play and long walks. He knows 'sit' and 'shake' and is eager to learn more. He needs a home with a yard or an active owner who can give him plenty of exercise and cuddles.",
     status: "Available",
+    story: [
+      "Buddy arrived full of energy and ready to make friends.",
+      "He learned simple commands with the shelter team.",
+      "Buddy hopes to find an active family who loves walks and playtime.",
+    ],
     photo: "",
   },
   {
@@ -113,6 +138,11 @@ export const PETS = [
     description:
       "Bella is a happy beagle with a nose for adventure and a wagging tail for everyone she meets. She is very food-motivated, which makes training a breeze. She would love a family that enjoys the outdoors as much as she does.",
     status: "Available",
+    story: [
+      "Bella came to Pet Heaven with her cheerful beagle personality.",
+      "She enjoys sniffing around the yard and learning with treats.",
+      "Bella is waiting for a family who can give her fun outdoor time.",
+    ],
     photo: "",
   },
   {
@@ -133,6 +163,11 @@ export const PETS = [
     description:
       "Rocky is a scruffy, big-hearted terrier who is devoted to his people. He is past the crazy puppy stage and happy with a couple of good walks a day. He would suit an adult home or a family with older children.",
     status: "Available",
+    story: [
+      "Rocky arrived as a brave little dog with a big personality.",
+      "He slowly learned to trust the staff and now enjoys his daily walks.",
+      "Rocky is ready for a patient owner who likes loyal dogs.",
+    ],
     photo: "",
   },
   {
@@ -153,6 +188,11 @@ export const PETS = [
     description:
       "Coco is a clever little poodle mix with a soft, low-shedding coat that is great for allergy-sensitive homes. She is gentle, quick to learn, and loves to be close to her humans. A wonderful first dog for a caring family.",
     status: "Available",
+    story: [
+      "Coco arrived young, bright and eager to learn.",
+      "She enjoys training games and staying close to the volunteers.",
+      "Coco is looking for a caring family to grow up with.",
+    ],
     photo: "",
   },
 ];

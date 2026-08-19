@@ -69,6 +69,15 @@ export default function PetDetails() {
             </li>
           </ul>
 
+          <div className="pet-story">
+            <h2>{pet.name}'s story</h2>
+            <ol>
+              {pet.story.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+          </div>
+
           <div className="btn-row">
             <Button to={`/adopt/${pet.id}/request`}>
               Request to adopt {pet.name}

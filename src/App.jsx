@@ -4,6 +4,7 @@ import Layout from "./components/Layout.jsx";
 
 import Home from "./pages/Home.jsx";
 import Adopt from "./pages/Adopt.jsx";
+import Quiz from "./pages/Quiz.jsx";
 import PetDetails from "./pages/PetDetails.jsx";
 import AdoptRequest from "./pages/AdoptRequest.jsx";
 import Release from "./pages/Release.jsx";
@@ -20,6 +21,7 @@ export default function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="adopt" element={<Adopt />} />
+        <Route path="quiz" element={<Quiz />} />
         <Route path="adopt/:id" element={<PetDetails />} />
         <Route path="adopt/:id/request" element={<AdoptRequest />} />
         <Route path="release" element={<Release />} />

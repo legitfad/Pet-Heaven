@@ -50,6 +50,9 @@ export default function NavBar() {
           <NavLink to="/adopt" className={linkClass} onClick={closeMenu}>
             Adopt
           </NavLink>
+          <NavLink to="/quiz" className={linkClass} onClick={closeMenu}>
+            Match Quiz
+          </NavLink>
           <NavLink to="/release" className={linkClass} onClick={closeMenu}>
             Release a Pet
           </NavLink>

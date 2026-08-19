@@ -2,6 +2,7 @@ import { useState } from "react";
 import SectionHeading from "../components/SectionHeading.jsx";
 import SearchFilterBar from "../components/SearchFilterBar.jsx";
 import PetGrid from "../components/PetGrid.jsx";
+import Button from "../components/Button.jsx";
 import { PETS } from "../data/pets.js";
 
 export default function Adopt() {
@@ -26,6 +27,10 @@ export default function Adopt() {
         title="Pets looking for a loving home"
         subtitle="Browse the cats and dogs currently in our care. Click any pet to learn more about them."
       />
+      <div className="quiz-box">
+        <p>Not sure which pet suits you?</p>
+        <Button to="/quiz" size="sm">Try the match quiz</Button>
+      </div>
 
       <SearchFilterBar
         search={search}

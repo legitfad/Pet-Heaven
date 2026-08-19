@@ -499,6 +499,7 @@ main {
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 26px;
+  align-items: stretch;
 }
 .pet-card {
   background: #fff;
@@ -508,6 +509,7 @@ main {
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
+  height: 420px;
   transition: transform 0.16s, box-shadow 0.16s;
 }
 .pet-card:hover {
@@ -517,7 +519,8 @@ main {
 .pet-card-media {
   position: relative;
   display: block;
-  aspect-ratio: 1 / 1;
+  height: 250px;
+  flex-shrink: 0;
 }
 .pet-card-media .pet-avatar,
 .pet-card-media img {
@@ -564,6 +567,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 }
 .pet-card-body h3 {
   margin: 0;
@@ -572,11 +576,13 @@ main {
   color: var(--muted);
   font-size: 0.9rem;
   margin: 0;
+  min-height: 22px;
 }
 .pet-traits {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  min-height: 28px;
 }
 .tag {
   background: #fff4e8;
@@ -670,6 +676,7 @@ main {
   overflow: hidden;
   aspect-ratio: 4 / 3;
   box-shadow: var(--shadow-sm);
+  background: #fff;
 }
 .pet-detail-media .pet-avatar {
   width: 100%;
@@ -678,7 +685,7 @@ main {
 .pet-detail-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 .pet-description {
@@ -699,6 +706,69 @@ main {
 }
 .pet-facts span {
   color: var(--muted);
+}
+.pet-story {
+  background: var(--brand-tint);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  margin-top: 18px;
+}
+.pet-story h2 {
+  font-size: 1.15rem;
+  margin: 0 0 10px;
+}
+.pet-story ol {
+  margin: 0;
+  padding-left: 22px;
+}
+.pet-story li {
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+/* ---- Quiz --------------------------------------------------------------- */
+.quiz-box {
+  background: var(--brand-tint);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.quiz-box p {
+  margin: 0;
+  font-weight: 600;
+}
+.quiz-form {
+  margin-top: 24px;
+}
+.quiz-result {
+  margin-top: 26px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  padding: 20px;
+}
+.quiz-photo {
+  height: 220px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--brand-tint);
+}
+.quiz-photo img,
+.quiz-photo .pet-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ---- Forms --------------------------------------------------------------- */
@@ -875,6 +945,13 @@ textarea.control {
 }
 
 /* ---- Employee page ------------------------------------------------------- */
+.employee-section {
+  margin-top: 30px;
+}
+.employee-section h2 {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
 .request-list {
   display: grid;
   gap: 18px;
@@ -982,6 +1059,12 @@ textarea.control {
   .pet-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .pet-card {
+    height: 400px;
+  }
+  .pet-card-media {
+    height: 230px;
+  }
   .pet-detail {
     grid-template-columns: 1fr;
   }
@@ -993,6 +1076,12 @@ textarea.control {
   }
   .request-card {
     grid-template-columns: 1fr;
+  }
+  .quiz-result {
+    grid-template-columns: 1fr;
+  }
+  .quiz-photo {
+    width: 100%;
   }
 
   /* Switch the nav to a hamburger menu */
@@ -1045,6 +1134,12 @@ textarea.control {
   }
   .pet-grid {
     grid-template-columns: 1fr;
+  }
+  .pet-card {
+    height: 390px;
+  }
+  .pet-card-media {
+    height: 230px;
   }
   .stats-inner {
     grid-template-columns: repeat(2, 1fr);

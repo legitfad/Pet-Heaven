@@ -13,7 +13,10 @@ export async function sendEmployeeNotification(request) {
     request.notes;
 
   if (!serviceId || !templateId || !publicKey) {
-    return false;
+    return {
+      sent: false,
+      message: "EmailJS details are missing from the .env file.",
+    };
   }
 
   try {
@@ -36,8 +39,28 @@ export async function sendEmployeeNotification(request) {
       }),
     });
 
-    return response.ok;
+    if (response.ok) {
+      return {
+        sent: true,
+        message: "Email notification was sent to " + EMPLOYEE_EMAIL + ".",
+      };
+    }
+
+    const errorText = await response.text();
+
+    return {
+      sent: false,
+      message:
+        "Email notification failed. EmailJS said: " +
+        response.status +
+        " " +
+        errorText,
+    };
   } catch {
-    return false;
+    return {
+      sent: false,
+      message:
+        "Email notification failed. Please restart the dev server after changing .env, then try again.",
+    };
   }
 }

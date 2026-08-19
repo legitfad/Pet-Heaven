@@ -54,7 +54,7 @@ export default function About() {
             eyebrow="Our facilities"
             title="What we provide"
           />
-          <div className="feature-grid">
+          <div className="feature-grid three">
             <article className="feature-card">
               <div className="feature-icon">🏠</div>
               <h3>Shelter &amp; daily care</h3>

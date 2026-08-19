@@ -4,8 +4,8 @@ import FormField from "../components/FormField.jsx";
 import Button from "../components/Button.jsx";
 import Notice from "../components/Notice.jsx";
 import { required, isEmail, isPhone } from "../utils/validators.js";
-import { sendMailto, ADMIN_EMAIL } from "../utils/mailto.js";
 import { addRequest } from "../utils/requestStore.js";
+import { sendEmployeeNotification } from "../utils/emailNotification.js";
 
 export default function Release() {
   const [values, setValues] = useState({
@@ -22,6 +22,7 @@ export default function Release() {
   const [agree, setAgree] = useState(false);
   const [agreeError, setAgreeError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [emailMessage, setEmailMessage] = useState("");
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -43,7 +44,7 @@ export default function Release() {
     return e;
   }
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault();
     const foundErrors = validate();
     const agreeMsg = agree
@@ -57,37 +58,32 @@ export default function Release() {
     }
     if (agreeMsg) return;
 
-    addRequest({
+    const request = {
       type: "Release",
       petName: values.petName,
       petType: values.petType,
       applicantName: values.ownerName,
       email: values.email,
       phone: values.phone,
-      notes: values.reason,
-    });
+      notes:
+        "Reason: " + values.reason + "\n" +
+        "Pet age: " + (values.petAge || "Not given") + "\n" +
+        "Health and temperament: " + (values.health || "Not given"),
+    };
 
-    sendMailto("Pet release request", {
-      "Owner name": values.ownerName,
-      Email: values.email,
-      Phone: values.phone,
-      "Pet type": values.petType,
-      "Pet name": values.petName,
-      "Pet age": values.petAge || "Not given",
-      "Reason for release": values.reason,
-      "Health & temperament": values.health || "Not given",
-    });
+    addRequest(request);
+
+    const emailResult = await sendEmployeeNotification(request);
+    setEmailMessage(emailResult.message);
     setSubmitted(true);
   }
 
   if (submitted) {
     return (
       <div className="container section narrow">
-        <Notice type="success" title="Thank you — your request is ready to send">
-          Your email app should have opened with the details pre-filled; just
-          press <strong>Send</strong>. If it did not open, email us at{" "}
-          <a href={`mailto:${ADMIN_EMAIL}`}>{ADMIN_EMAIL}</a>. Our team will
-          contact you to talk about the next steps for your pet.
+        <Notice type="success" title="Thank you — your release request has been submitted">
+          Your request was saved for the employee team to review.{" "}
+          {emailMessage || "Employees can see the request after logging in."}
         </Notice>
         <div className="btn-row">
           <Button to="/">Back to home</Button>

@@ -8,10 +8,7 @@ import Button from "../components/Button.jsx";
 import Notice from "../components/Notice.jsx";
 import { required, isEmail, isPhone } from "../utils/validators.js";
 import { addRequest } from "../utils/requestStore.js";
-import {
-  EMPLOYEE_EMAIL,
-  sendEmployeeNotification,
-} from "../utils/emailNotification.js";
+import { sendEmployeeNotification } from "../utils/emailNotification.js";
 
 export default function AdoptRequest() {
   const { id } = useParams();
@@ -31,7 +28,7 @@ export default function AdoptRequest() {
   const [agree, setAgree] = useState(false);
   const [agreeError, setAgreeError] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
+  const [emailMessage, setEmailMessage] = useState("");
 
   if (!pet) {
     return (
@@ -116,8 +113,8 @@ export default function AdoptRequest() {
 
     addRequest(request);
 
-    const sent = await sendEmployeeNotification(request);
-    setEmailSent(sent);
+    const emailResult = await sendEmployeeNotification(request);
+    setEmailMessage(emailResult.message);
     setSubmitted(true);
   }
 
@@ -126,9 +123,8 @@ export default function AdoptRequest() {
       <div className="container section narrow">
         <Notice type="success" title="Your adoption request has been submitted">
           Your request was saved for the employee team to review.
-          {emailSent
-            ? ` An email notification was sent to ${EMPLOYEE_EMAIL}.`
-            : ` Email notification is not set up yet, but employees can still see the request after logging in.`}
+          {" "}
+          {emailMessage || "Employees can see the request after logging in."}
         </Notice>
         <div className="btn-row">
           <Button to="/adopt">Browse more pets</Button>
