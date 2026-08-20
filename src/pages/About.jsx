@@ -31,7 +31,7 @@ export default function About() {
           />
           <p className="prose">
             Pet Heaven is a charity society that cares for the welfare of
-            abandoned cats and dogs — pets whose original owners can no longer
+            abandoned cats and dogs - pets whose original owners can no longer
             keep them. Every year, many animals are left without a home through
             no fault of their own. Our purpose is simple: to give each of them a
             safe place to stay, the care they need, and a second chance at a
@@ -41,7 +41,7 @@ export default function About() {
             Founded by a small group of animal lovers, Pet Heaven today runs on
             the dedication of its staff and volunteers. When a pet comes into our
             care, our team looks after it, arranges veterinary checks, and works
-            patiently to understand its personality — so we can find the home
+            patiently to understand its personality - so we can find the home
             where it will thrive.
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function About() {
               <div className="feature-icon">🩺</div>
               <h3>Veterinary care</h3>
               <p>
-                Health checks, vaccinations and desexing through our partner
+                Health checks, vaccinations and other medical treatments through our partner
                 vets, so pets leave us happy and healthy.
               </p>
             </article>
@@ -75,7 +75,7 @@ export default function About() {
               <div className="feature-icon">🤝</div>
               <h3>Rehoming service</h3>
               <p>
-                A careful adoption process — including interviews — that puts the
+                A careful adoption process including interview; placing the
                 wellbeing of the pet and the family first.
               </p>
             </article>
