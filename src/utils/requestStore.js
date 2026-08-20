@@ -26,6 +26,9 @@ export function addRequest(request) {
     email: request.email,
     phone: request.phone,
     notes: request.notes,
+    reason: request.reason,
+    petAge: request.petAge,
+    health: request.health,
   };
 
   requests.unshift(newRequest);

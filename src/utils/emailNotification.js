@@ -15,7 +15,7 @@ export async function sendEmployeeNotification(request) {
   if (!serviceId || !templateId || !publicKey) {
     return {
       sent: false,
-      message: "EmailJS details are missing from the .env file.",
+      message: "Check environment variables.",
     };
   }
 
@@ -60,7 +60,7 @@ export async function sendEmployeeNotification(request) {
     return {
       sent: false,
       message:
-        "Email notification failed. Please restart the dev server after changing .env, then try again.",
+        "Email notification failed. Check console or restart server.",
     };
   }
 }

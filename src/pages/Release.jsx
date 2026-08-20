@@ -65,6 +65,9 @@ export default function Release() {
       applicantName: values.ownerName,
       email: values.email,
       phone: values.phone,
+      reason: values.reason,
+      petAge: values.petAge || "Not given",
+      health: values.health || "Not given",
       notes:
         "Reason: " + values.reason + "\n" +
         "Pet age: " + (values.petAge || "Not given") + "\n" +

@@ -40,6 +40,70 @@ export default function Employee() {
     );
   }
 
+  function getDetailFromNotes(notes, label) {
+    if (!notes) return "";
+
+    const lines = notes.split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      const prefix = label + ":";
+      if (lines[i].startsWith(prefix)) {
+        return lines[i].slice(prefix.length).trim();
+      }
+    }
+
+    return "";
+  }
+
+  function showRequestDetails(request) {
+    if (request.type === "Release") {
+      const reason = request.reason || getDetailFromNotes(request.notes, "Reason");
+      const petAge = request.petAge || getDetailFromNotes(request.notes, "Pet age");
+      const health =
+        request.health ||
+        getDetailFromNotes(request.notes, "Health and temperament");
+
+      return (
+        <>
+          <p>
+            <strong>Name:</strong> {request.applicantName}
+          </p>
+          <p>
+            <strong>Email:</strong> {request.email}
+          </p>
+          <p>
+            <strong>Phone:</strong> {request.phone}
+          </p>
+          <p>
+            <strong>Reason:</strong> {reason || "Not given"}
+          </p>
+          <p>
+            <strong>Pet age:</strong> {petAge || "Not given"}
+          </p>
+          <p>
+            <strong>Health and temperament:</strong> {health || "Not given"}
+          </p>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <p>
+          <strong>Name:</strong> {request.applicantName}
+        </p>
+        <p>
+          <strong>Email:</strong> {request.email}
+        </p>
+        <p>
+          <strong>Phone:</strong> {request.phone}
+        </p>
+        <p>
+          <strong>Notes:</strong> {request.notes}
+        </p>
+      </>
+    );
+  }
+
   function updateStatus(id, status) {
     const updated = [];
 
@@ -48,15 +112,7 @@ export default function Employee() {
 
       if (request.id === id) {
         updated.push({
-          id: request.id,
-          type: request.type,
-          petName: request.petName,
-          petType: request.petType,
-          applicantName: request.applicantName,
-          email: request.email,
-          phone: request.phone,
-          notes: request.notes,
-          date: request.date,
+          ...request,
           status: status,
         });
       } else {
@@ -99,18 +155,7 @@ export default function Employee() {
                 </div>
 
                 <div className="request-details">
-                  <p>
-                    <strong>Name:</strong> {request.applicantName}
-                  </p>
-                  <p>
-                    <strong>Email:</strong> {request.email}
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> {request.phone}
-                  </p>
-                  <p>
-                    <strong>Notes:</strong> {request.notes}
-                  </p>
+                  {showRequestDetails(request)}
                 </div>
 
                 <div className="request-actions">
