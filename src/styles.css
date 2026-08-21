@@ -1,4 +1,3 @@
-/* Pet Heaven global stylesheet */
 :root {
   --brand: #ec7fa9;
   --brand-dark: #c85f88;
@@ -18,14 +17,12 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: var(--font);
   color: var(--ink);
   background: var(--bg);
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
 }
 img, svg { max-width: 100%; }
 a { color: var(--brand); }
@@ -85,7 +82,6 @@ main { flex: 1; }
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 .btn-primary, .chip-active, .step-num, .cta-card .btn-primary {
   color: #fff;
@@ -114,9 +110,8 @@ main { flex: 1; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 250, 253, 0.94);
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(8px);
 }
 .nav-inner {
   position: relative;
@@ -134,7 +129,6 @@ main { flex: 1; }
   font-weight: 600;
   text-decoration: none;
 }
-.brand-mark { width: 34px; height: 34px; color: var(--brand); }
 .brand-text strong, .nav-link:hover, .nav-link.active { color: var(--brand); }
 .nav-links { align-items: center; gap: 20px; }
 .nav-link {
@@ -166,7 +160,6 @@ main { flex: 1; }
   content: "";
   background: var(--ink);
   border-radius: 2px;
-  transition: transform 0.2s, top 0.2s, background 0.2s;
 }
 .bars { position: relative; }
 .bars::before, .bars::after { position: absolute; }
@@ -298,9 +291,8 @@ main { flex: 1; }
   flex-direction: column;
   height: 420px;
   overflow: hidden;
-  transition: transform 0.16s, box-shadow 0.16s;
 }
-.pet-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.pet-card:hover { box-shadow: var(--shadow); }
 .pet-card-media {
   position: relative;
   display: block;
@@ -526,7 +518,6 @@ textarea.control { resize: vertical; }
 .request-card h3 { margin: 4px 0; }
 .request-details p { margin: 0 0 8px; }
 .request-actions label { gap: 6px; font-weight: 600; }
-.employee-note { margin-top: 20px; }
 
 .site-footer {
   margin-top: 20px;

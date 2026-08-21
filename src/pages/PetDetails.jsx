@@ -12,8 +12,7 @@ export default function PetDetails() {
       <div className="container section narrow">
         <h1>Pet not found</h1>
         <p>
-          Sorry, we could not find that pet. It may already have found a loving
-          home.
+          Sorry, we could not find that pet. It may already have found a loving home.
         </p>
         <Button to="/adopt">Back to all pets</Button>
       </div>

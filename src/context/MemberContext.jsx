@@ -69,7 +69,7 @@ export function MemberProvider({ children }) {
     setCurrentMember(null);
   }
 
-  const value = { members, currentMember, register, login, logout };
+  const value = { currentMember, register, login, logout };
 
   return (
     <MemberContext.Provider value={value}>{children}</MemberContext.Provider>

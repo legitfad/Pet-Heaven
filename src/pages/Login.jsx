@@ -23,9 +23,9 @@ export default function Login() {
           eyebrow="Account"
           title={`You are signed in, ${currentMember.name.split(" ")[0]}`}
         />
-        <Notice type="info" title="You're all set">
+        <Notice type="info" title="You're all set!">
           {currentMember.role === "employee"
-            ? "You can manage pet requests from the employee page."
+            ? "Manage pet requests here."
             : "You can browse pets and request an adoption."}
         </Notice>
         <div className="btn-row">
@@ -126,7 +126,7 @@ export default function Login() {
         <Button type="submit">Log in</Button>
 
         <p className="form-alt">
-          New here? <Link to="/register">Create a free membership</Link>.
+          New here? <Link to="/register">Create a free account!</Link>.
         </p>
       </form>
     </div>

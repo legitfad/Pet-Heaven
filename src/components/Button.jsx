@@ -5,7 +5,6 @@ export default function Button({
   size = "",
   to,
   children,
-  className = "",
   type = "button",
   onClick,
 }) {
@@ -13,10 +12,6 @@ export default function Button({
 
   if (size) {
     classes += " btn-" + size;
-  }
-
-  if (className) {
-    classes += " " + className;
   }
 
   if (to) {

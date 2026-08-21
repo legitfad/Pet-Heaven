@@ -14,16 +14,12 @@ const FAQ = [
   },
   {
     q: "Do I have to be a member to adopt?",
-    a: "Yes — membership is free and lets our team follow up with you. You can register in about a minute from the Join us page.",
+    a: "Yes! An account is free and lets our team follow up with you. You can register in about a minute from the Join us page.",
   },
   {
     q: "I found a stray animal. Can you help?",
     a: "Please use the Release a Pet form or call us. We will do our best to help, subject to space in our shelter.",
-  },
-  {
-    q: "Can I volunteer or donate?",
-    a: "Absolutely! Choose 'Volunteering' or 'Donating' when you register, and our team will be in touch with ways to help.",
-  },
+  }
 ];
 
 export default function Contact() {

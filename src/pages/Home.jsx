@@ -48,7 +48,7 @@ export default function Home() {
             <p className="lead">
               Pet Heaven cares for cats and dogs whose owners can no longer keep
               them, and helps them find loving new families. Adopt a friend,
-              support our work, or rehome a pet — we are here to help.
+              support our work, or rehome a pet. We are here to help.
             </p>
             <div className="hero-actions">
               <Button to="/adopt">Find a pet to adopt</Button>

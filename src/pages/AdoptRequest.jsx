@@ -50,8 +50,7 @@ export default function AdoptRequest() {
         />
         <Notice type="info" title="A free membership is required">
           Adoption requests are for Pet Heaven members, so our team can follow up
-          with you. Please log in or register — it only takes a minute — then come
-          back to this pet.
+          with you. Please log in or register - it only takes a minute.
         </Notice>
         <div className="btn-row">
           <Button to="/login">Log in</Button>

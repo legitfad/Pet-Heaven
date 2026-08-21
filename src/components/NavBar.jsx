@@ -21,15 +21,6 @@ export default function NavBar() {
     <header className="site-header">
       <div className="nav-inner">
         <Link to="/" className="brand" onClick={closeMenu}>
-          <svg className="brand-mark" viewBox="0 0 64 64">
-            <g fill="currentColor">
-              <ellipse cx="22" cy="24" rx="6" ry="8" />
-              <ellipse cx="42" cy="24" rx="6" ry="8" />
-              <ellipse cx="13" cy="37" rx="5.5" ry="7" />
-              <ellipse cx="51" cy="37" rx="5.5" ry="7" />
-              <path d="M32 34c-8 0-14 6-14 12 0 5 5 7 14 7s14-2 14-7c0-6-6-12-14-12z" />
-            </g>
-          </svg>
           <span className="brand-text">
             Pet <strong>Heaven</strong>
           </span>

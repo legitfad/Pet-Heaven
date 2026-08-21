@@ -209,11 +209,6 @@ export default function Employee() {
         </>
       )}
 
-      <p className="form-alt employee-note">
-        Employee login example: <strong>staff@petheaven.org.sg</strong>. This is
-        a simple demo login for the assignment, not real website security.
-      </p>
-
       <p>
         <Link to="/adopt">Back to pet list</Link>
       </p>
