@@ -142,7 +142,7 @@ export default function Contact() {
           <div className="info-card">
             <h3>Visit or call</h3>
             <p>
-              12 Sunshine Avenue, Singapore 123456
+              59 Sungei Tengah Road, Singapore 699014
               <br />
               Open daily · 10am – 6pm
             </p>

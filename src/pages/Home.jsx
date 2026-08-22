@@ -36,7 +36,7 @@ const STEPS = [
 
 export default function Home() {
   const featured = getFeaturedPets(3);
-  const heroPets = [PETS[0], PETS[4], PETS[2]];
+  const heroPets = [PETS[0], PETS[4], PETS[5], PETS[2]];
 
   return (
     <>
@@ -58,14 +58,26 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-art">
+          <div className="hero-board" aria-label="Featured adoptable pets">
+            <div className="board-note board-note-main">
+              <span>Now welcoming</span>
+              <strong>{PETS.length} pets</strong>
+            </div>
+
             {heroPets.map((pet, i) => (
-              <div key={pet.id} className={"hero-blob blob-" + i}>
-                <PetAvatar
-                  species={pet.species}
-                  bg={pet.bg}
-                  name={pet.name}
-                />
+              <div key={pet.id} className={"hero-pet-card hero-pet-" + i}>
+                <div className="hero-pet-photo">
+                  <PetAvatar
+                    species={pet.species}
+                    bg={pet.bg}
+                    name={pet.name}
+                  />
+                </div>
+                <div>
+                  <h3>{pet.name}</h3>
+                  <p>{pet.breed}</p>
+                  <span>{pet.traits[0]}</span>
+                </div>
               </div>
             ))}
           </div>
