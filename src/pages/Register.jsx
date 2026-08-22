@@ -83,7 +83,7 @@ export default function Register() {
     return (
       <div className="container section narrow">
         <Notice type="success" title={`Welcome to Pet Heaven, ${values.name.split(" ")[0]}!`}>
-          Your membership is active and you are now signed in. You can now request
+          Your account is active and you are now signed in. You can now request
           to adopt a pet, or explore the ones looking for a home.
         </Notice>
         <div className="btn-row">
@@ -102,7 +102,7 @@ export default function Register() {
         as="h1"
         eyebrow="Join us"
         title="Become a member & supporter"
-        subtitle="Membership is free. It lets you request adoptions and keeps you connected to our work."
+        subtitle="Account is free. It lets you request adoptions and keeps you connected to our work."
       />
 
       <form className="form-card" onSubmit={handleSubmit} noValidate>
@@ -188,7 +188,7 @@ export default function Register() {
           {agreeError && <p className="field-error">{agreeError}</p>}
         </div>
 
-        <Button type="submit">Create my membership</Button>
+        <Button type="submit">Create my account</Button>
 
         <p className="form-alt">
           Already a member? <Link to="/login">Log in here</Link>.

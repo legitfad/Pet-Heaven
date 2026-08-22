@@ -23,6 +23,7 @@ export default function Adopt() {
     <div className="container section">
       <SectionHeading
         as="h1"
+        className="section-heading-wide"
         eyebrow="Adopt"
         title="Pets looking for a loving home"
         subtitle="Browse the cats and dogs currently in our care. Click any pet to learn more about them."

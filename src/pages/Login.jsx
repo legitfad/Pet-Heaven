@@ -92,7 +92,7 @@ export default function Login() {
         as="h1"
         eyebrow="Welcome back"
         title="Log in to your account"
-        subtitle="Sign in to request an adoption and manage your membership."
+        subtitle="Sign in to request an adoption and manage your account."
       />
 
       <form className="form-card" onSubmit={handleSubmit} noValidate>

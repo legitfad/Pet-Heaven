@@ -1,7 +1,8 @@
+import { useState } from "react";
 import SectionHeading from "../components/SectionHeading.jsx";
 import Button from "../components/Button.jsx";
 import PetGrid from "../components/PetGrid.jsx";
-import PetAvatar from "../components/PetAvatar.jsx";
+import PetImage from "../components/PetImage.jsx";
 import { getFeaturedPets, PETS } from "../data/pets.js";
 
 const FACILITIES = [
@@ -29,14 +30,34 @@ const FACILITIES = [
 
 const STEPS = [
   { n: 1, title: "Browse the pets", text: "Look through the cats and dogs currently in our care." },
-  { n: 2, title: "Become a member", text: "Register a free membership so we can follow up with you." },
+  { n: 2, title: "Become a member", text: "Register a free account so we can follow up with you." },
   { n: 3, title: "Send a request", text: "Fill in the short adoption form for the pet you love." },
   { n: 4, title: "Meet & welcome home", text: "We arrange a meet-up, then help you welcome your new friend." },
 ];
 
+const HERO_STORY = [
+  {
+    label: "Rescue",
+    title: "A pet arrives safely",
+    text: "Owners can ask for help before a pet is abandoned.",
+  },
+  {
+    label: "Care",
+    title: "Health and comfort first",
+    text: "Staff record needs, vaccines, traits and temperament.",
+  },
+  {
+    label: "Match",
+    title: "The right family finds them",
+    text: "Visitors browse, take the quiz and submit requests.",
+  },
+];
+
 export default function Home() {
   const featured = getFeaturedPets(3);
-  const heroPets = [PETS[0], PETS[4], PETS[5], PETS[2]];
+  const [spotlightPet] = useState(() => {
+    return PETS[Math.floor(Math.random() * PETS.length)];
+  });
 
   return (
     <>
@@ -56,30 +77,42 @@ export default function Home() {
                 Release a pet
               </Button>
             </div>
+            <div className="hero-mini-stats" aria-label="Pet Heaven impact">
+              <span>500+ pets rehomed</span>
+              <span>200+ volunteers</span>
+              <span>10 years of care</span>
+            </div>
           </div>
 
-          <div className="hero-board" aria-label="Featured adoptable pets">
-            <div className="board-note board-note-main">
-              <span>Now welcoming</span>
-              <strong>{PETS.length} pets</strong>
+          <div className="hero-showcase" aria-label="Pet Heaven rescue journey">
+            <div className="hero-spotlight">
+              <div className="hero-spotlight-photo">
+                <PetImage pet={spotlightPet} />
+              </div>
+              <div className="hero-spotlight-copy">
+                <span>Featured friend</span>
+                <h2>{spotlightPet.name}</h2>
+                <p>{spotlightPet.breed}</p>
+              </div>
             </div>
 
-            {heroPets.map((pet, i) => (
-              <div key={pet.id} className={"hero-pet-card hero-pet-" + i}>
-                <div className="hero-pet-photo">
-                  <PetAvatar
-                    species={pet.species}
-                    bg={pet.bg}
-                    name={pet.name}
-                  />
-                </div>
-                <div>
-                  <h3>{pet.name}</h3>
-                  <p>{pet.breed}</p>
-                  <span>{pet.traits[0]}</span>
-                </div>
+            <div className="hero-journey">
+              <div className="journey-header">
+                <span>How Pet Heaven helps</span>
+                <strong>{PETS.length} pets in care</strong>
               </div>
-            ))}
+
+              {HERO_STORY.map((item, i) => (
+                <div className="journey-step" key={item.label}>
+                  <span className="journey-number">{i + 1}</span>
+                  <div>
+                    <p>{item.label}</p>
+                    <h3>{item.title}</h3>
+                    <span className="journey-description">{item.text}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -168,7 +201,7 @@ export default function Home() {
           <div>
             <h2>Become a Pet Heaven member</h2>
             <p>
-              Join our community of supporters. Membership is free and lets you request adoptions and stay in touch with our work.
+              Join our community of supporters. Account is free and lets you request adoptions and stay in touch with our work.
             </p>
           </div>
           <Button to="/register">Join us today</Button>

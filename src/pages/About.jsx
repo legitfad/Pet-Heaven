@@ -27,7 +27,7 @@ export default function About() {
           <SectionHeading
             as="h1"
             eyebrow="About us"
-            title="Our story & purpose"
+            title="Our story & Our purpose"
           />
           <p className="prose">
             Pet Heaven is a charity society that cares for the welfare of
@@ -117,7 +117,7 @@ export default function About() {
               <p>
                 Every day
                 <br />
-                10:00am – 6:00pm
+                10:00am - 6:00pm
               </p>
             </div>
             <div>

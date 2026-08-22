@@ -48,7 +48,7 @@ export default function AdoptRequest() {
           eyebrow="Members only"
           title={`Sign in to adopt ${pet.name}`}
         />
-        <Notice type="info" title="A free membership is required">
+        <Notice type="info" title="A free account is required">
           Adoption requests are for Pet Heaven members, so our team can follow up
           with you. Please log in or register - it only takes a minute.
         </Notice>
