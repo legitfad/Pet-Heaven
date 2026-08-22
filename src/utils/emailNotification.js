@@ -42,7 +42,7 @@ export async function sendEmployeeNotification(request) {
   if (!serviceId || !templateId || !publicKey) {
     return {
       sent: false,
-      message: "Check environment variables.",
+      message: "Email confirmation is not available right now.",
     };
   }
 
