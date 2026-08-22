@@ -10,7 +10,7 @@ export const PETS = [
     bg: "#fff1dd",
     traits: ["Gentle", "Lap cat", "Quiet"],
     vaccinated: true,
-    desexed: true,
+    spayed: true,
     goodWith: "Kids & seniors",
     description:
       "Mochi is a soft, cream-coloured sweetheart who loves nothing more than a warm lap and a slow afternoon. She was surrendered when her family moved overseas. She is litter-trained, gentle with children, and greets everyone with a happy chirp.",
@@ -33,7 +33,7 @@ export const PETS = [
     bg: "#ffe8cf",
     traits: ["Playful", "Curious", "Chatty"],
     vaccinated: true,
-    desexed: true,
+    spayed: true,
     goodWith: "Older kids",
     description:
       "Simba is a bold, friendly tabby with endless curiosity. He will follow you from room to room and 'help' with everything you do. He loves feather toys and sunny windowsills, and would suit an active household that enjoys an outgoing cat.",
@@ -56,7 +56,7 @@ export const PETS = [
     bg: "#eef1f6",
     traits: ["Shy", "Sweet", "Cuddly"],
     vaccinated: true,
-    desexed: false,
+    spayed: false,
     goodWith: "Quiet homes",
     description:
       "Luna is a delicate grey beauty who is a little shy at first but blossoms into the most affectionate companion once she trusts you. She would do best in a calm, quiet home where she can settle in at her own pace.",
@@ -79,7 +79,7 @@ export const PETS = [
     bg: "#eceef0",
     traits: ["Calm", "Independent", "Affectionate"],
     vaccinated: true,
-    desexed: true,
+    spayed: true,
     goodWith: "Other cats",
     description:
       "Dressed in his smart black-and-white tuxedo, Oreo is a relaxed gentleman who enjoys a good nap and a scratch behind the ears. He is independent during the day and cuddly at night — the perfect companion for a working adopter.",
@@ -103,7 +103,7 @@ export const PETS = [
     bg: "#fff2d6",
     traits: ["Loyal", "Energetic", "Friendly"],
     vaccinated: true,
-    desexed: true,
+    spayed: true,
     goodWith: "Kids & other dogs",
     description:
       "Buddy is a big, golden bundle of joy who loves people, play and long walks. He knows 'sit' and 'shake' and is eager to learn more. He needs a home with a yard or an active owner who can give him plenty of exercise and cuddles.",
@@ -127,7 +127,7 @@ export const PETS = [
     bg: "#f6ead9",
     traits: ["Curious", "Food-motivated", "Sociable"],
     vaccinated: true,
-    desexed: true,
+    spayed: true,
     goodWith: "Kids",
     description:
       "Bella is a happy beagle with a nose for adventure and a wagging tail for everyone she meets. She is very food-motivated, which makes training a breeze. She would love a family that enjoys the outdoors as much as she does.",
@@ -151,7 +151,7 @@ export const PETS = [
     bg: "#f3ecdd",
     traits: ["Brave", "Loyal", "Low-shedding"],
     vaccinated: true,
-    desexed: true,
+    spayed: true,
     goodWith: "Adults",
     description:
       "Rocky is a scruffy, big-hearted terrier who is devoted to his people. He is past the crazy puppy stage and happy with a couple of good walks a day. He would suit an adult home or a family with older children.",
@@ -175,7 +175,7 @@ export const PETS = [
     bg: "#f1e6dc",
     traits: ["Smart", "Gentle", "Hypoallergenic"],
     vaccinated: true,
-    desexed: false,
+    spayed: false,
     goodWith: "Kids & seniors",
     description:
       "Coco is a clever little poodle mix with a soft, low-shedding coat that is great for allergy-sensitive homes. She is gentle, quick to learn, and loves to be close to her humans. A wonderful first dog for a caring family.",

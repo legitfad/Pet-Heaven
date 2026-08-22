@@ -55,8 +55,8 @@ export default function PetDetails() {
               <strong>{pet.vaccinated ? "Yes" : "In progress"}</strong>
             </li>
             <li>
-              <span>Desexed</span>
-              <strong>{pet.desexed ? "Yes" : "In progress"}</strong>
+              <span>Spayed</span>
+              <strong>{pet.spayed ? "Yes" : "In progress"}</strong>
             </li>
             <li>
               <span>Good with</span>

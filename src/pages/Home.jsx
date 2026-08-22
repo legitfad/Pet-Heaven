@@ -13,7 +13,7 @@ const FACILITIES = [
   {
     icon: "🩺",
     title: "Health & vaccination",
-    text: "Every pet is health-checked, vaccinated and desexed by our vet partners before going to a new home.",
+    text: "Every pet is health-checked, vaccinated and spayed by our vet partners before going to a new home.",
   },
   {
     icon: "🤝",
@@ -156,8 +156,7 @@ export default function Home() {
           <div>
             <h2>Become a Pet Heaven member</h2>
             <p>
-              Join our community of supporters. Membership is free and lets you
-              request adoptions and stay in touch with our work.
+              Join our community of supporters. Membership is free and lets you request adoptions and stay in touch with our work.
             </p>
           </div>
           <Button to="/register">Join us today</Button>

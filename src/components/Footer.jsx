@@ -11,8 +11,7 @@ export default function Footer() {
             Pet <strong>Heaven</strong>
           </span>
           <p>
-            A charity that cares for the welfare of abandoned cats and dogs, and
-            helps them find loving new homes.
+            A charity that cares for the welfare of abandoned cats and dogs, and helps them find loving new homes.
           </p>
         </div>
 

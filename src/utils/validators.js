@@ -13,7 +13,7 @@ export function isPhone(value) {
   const digits = String(value).replace(/\D/g, "");
   return digits.length >= 8
     ? ""
-    : "Please enter a valid phone number (at least 8 digits).";
+    : "Please enter a valid phone number.";
 }
 
 export function minLength(value, n) {

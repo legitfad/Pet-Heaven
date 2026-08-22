@@ -10,7 +10,7 @@ import { sendEmployeeNotification } from "../utils/emailNotification.js";
 const FAQ = [
   {
     q: "How much does it cost to adopt?",
-    a: "We ask for a small adoption fee that helps cover vaccination and desexing. The exact amount is confirmed during your interview.",
+    a: "We ask for a small adoption fee that helps cover vaccination and spaying. The exact amount is confirmed during your interview.",
   },
   {
     q: "Do I have to be a member to adopt?",

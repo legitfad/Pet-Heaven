@@ -239,8 +239,7 @@ export default function AdoptRequest() {
               onChange={(e) => setAgree(e.target.checked)}
             />
             <span>
-              I understand Pet Heaven staff will review my request and arrange an
-              interview before any adoption.
+              I understand Pet Heaven staff will review my request and arrange an interview before any adoption.
             </span>
           </label>
           {agreeError && <p className="field-error">{agreeError}</p>}

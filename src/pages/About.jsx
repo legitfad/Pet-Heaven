@@ -106,11 +106,11 @@ export default function About() {
           <div className="info-grid">
             <div>
               <h4>Address</h4>
-              <p>
-                12 Sunshine Avenue
-                <br />
-                Singapore 123456
-              </p>
+               <p>
+                 59 Sungei Tengah Road
+                 <br />
+                  Singapore 699014
+               </p>
             </div>
             <div>
               <h4>Opening hours</h4>

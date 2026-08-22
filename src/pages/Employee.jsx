@@ -198,8 +198,7 @@ export default function Employee() {
 
       {requests.length === 0 ? (
         <Notice type="info" title="No requests yet">
-          New adoption and release requests will appear here after users submit
-          the forms.
+          New adoption and release requests will appear here after users submit the forms.
         </Notice>
       ) : (
         <>
