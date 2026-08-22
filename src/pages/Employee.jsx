@@ -86,6 +86,47 @@ export default function Employee() {
       );
     }
 
+    if (request.type === "Adoption") {
+      const address = request.address || getDetailFromNotes(request.notes, "Home address");
+      const housing = request.housing || getDetailFromNotes(request.notes, "Type of home");
+      const hasPets =
+        request.hasPets || getDetailFromNotes(request.notes, "Other pets at home");
+      const reason = request.reason || getDetailFromNotes(request.notes, "Reason");
+      const interview =
+        request.agreedToInterview ||
+        getDetailFromNotes(request.notes, "Understands interview required");
+
+      return (
+        <>
+          <p>
+            <strong>Name:</strong> {request.applicantName}
+          </p>
+          <p>
+            <strong>Email:</strong> {request.email}
+          </p>
+          <p>
+            <strong>Phone:</strong> {request.phone}
+          </p>
+          <p>
+            <strong>Home address:</strong> {address || "Not given"}
+          </p>
+          <p>
+            <strong>Type of home:</strong> {housing || "Not given"}
+          </p>
+          <p>
+            <strong>Other pets at home:</strong> {hasPets || "Not given"}
+          </p>
+          <p>
+            <strong>Reason:</strong> {reason || "Not given"}
+          </p>
+          <p>
+            <strong>Understands interview required:</strong>{" "}
+            {interview || "Not given"}
+          </p>
+        </>
+      );
+    }
+
     return (
       <>
         <p>

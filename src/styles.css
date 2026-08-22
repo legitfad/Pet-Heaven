@@ -413,6 +413,12 @@ main { flex: 1; }
   display: block;
   flex-shrink: 0;
   height: 250px;
+  overflow: hidden;
+}
+.pet-card-media img, .pet-card-media .pet-avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .pet-card-media img, .quiz-photo img, .pet-detail-media img { object-fit: cover; }
 .pet-avatar {
@@ -503,7 +509,11 @@ main { flex: 1; }
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
 }
-.pet-detail-media img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.pet-detail-media img, .pet-detail-media .pet-avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .pet-facts { display: grid; gap: 8px; margin: 18px 0; }
 .pet-facts li {
   display: flex;

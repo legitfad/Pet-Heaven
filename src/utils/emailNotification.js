@@ -1,16 +1,43 @@
 export const EMPLOYEE_EMAIL =
   import.meta.env.VITE_EMPLOYEE_EMAIL || "disposablefad@gmail.com";
 
+function addLine(lines, label, value) {
+  if (value) {
+    lines.push(label + ": " + value);
+  }
+}
+
+function buildMessage(request) {
+  const lines = [];
+
+  addLine(lines, "Request type", request.type);
+  addLine(lines, "Pet name", request.petName);
+  addLine(lines, "Pet type", request.petType);
+  addLine(lines, "Pet breed", request.petBreed);
+  addLine(lines, "Pet age", request.petAge);
+  addLine(lines, "Applicant name", request.applicantName);
+  addLine(lines, "Applicant email", request.email);
+  addLine(lines, "Applicant phone", request.phone);
+  addLine(lines, "Home address", request.address);
+  addLine(lines, "Type of home", request.housing);
+  addLine(lines, "Other pets at home", request.hasPets);
+  addLine(lines, "Reason", request.reason);
+  addLine(lines, "Health and temperament", request.health);
+  addLine(lines, "Understands interview required", request.agreedToInterview);
+
+  if (request.notes && !request.reason) {
+    lines.push("");
+    lines.push(request.notes);
+  }
+
+  return lines.join("\n");
+}
+
 export async function sendEmployeeNotification(request) {
   const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
   const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-  const message =
-    "Request type: " + request.type + "\n" +
-    "Pet name: " + request.petName + "\n" +
-    "Pet type: " + request.petType + "\n" +
-    "Applicant phone: " + request.phone + "\n\n" +
-    request.notes;
+  const message = buildMessage(request);
 
   if (!serviceId || !templateId || !publicKey) {
     return {
@@ -31,8 +58,16 @@ export async function sendEmployeeNotification(request) {
         user_id: publicKey,
         template_params: {
           title: request.type + " request for " + request.petName,
+          to_email: EMPLOYEE_EMAIL,
+          employee_email: EMPLOYEE_EMAIL,
+          recipient_email: EMPLOYEE_EMAIL,
+          cc_email: request.email,
+          customer_email: request.email,
+          user_email: request.email,
+          to_name: "Pet Heaven staff",
           name: request.applicantName,
           email: request.email,
+          reply_to: request.email,
           time: new Date().toLocaleString(),
           message: message,
         },
@@ -42,7 +77,7 @@ export async function sendEmployeeNotification(request) {
     if (response.ok) {
       return {
         sent: true,
-        message: "Email notification was sent to " + EMPLOYEE_EMAIL + ".",
+        message: "A confirmation email has been sent.",
       };
     }
 

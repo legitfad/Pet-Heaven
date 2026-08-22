@@ -104,10 +104,22 @@ export default function AdoptRequest() {
       type: "Adoption",
       petName: pet.name,
       petType: pet.species,
+      petBreed: pet.breed,
+      petAge: pet.age,
       applicantName: values.name,
       email: values.email,
       phone: values.phone,
-      notes: values.reason,
+      address: values.address,
+      housing: values.housing,
+      hasPets: values.hasPets,
+      reason: values.reason,
+      agreedToInterview: agree ? "Yes" : "No",
+      notes:
+        "Home address: " + values.address + "\n" +
+        "Type of home: " + values.housing + "\n" +
+        "Other pets at home: " + values.hasPets + "\n" +
+        "Reason: " + values.reason + "\n" +
+        "Understands interview required: " + (agree ? "Yes" : "No"),
     };
 
     addRequest(request);
